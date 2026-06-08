@@ -50,6 +50,8 @@
     background:radial-gradient(circle, rgba(20,170,70,.40), transparent 65%); filter:blur(8px);}
   .cover .glow2{position:absolute; width:380px; height:380px; left:-120px; bottom:-160px;
     background:radial-gradient(circle, rgba(224,50,47,.16), transparent 65%); filter:blur(8px);}
+  .cover .coverart{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+  .cover > div:not(.glow):not(.glow2):not(.coverart), .cover > h1, .cover > p, .cover > span{position:relative; z-index:1;}
 
   .row{display:flex; gap:18px;} .col{flex:1; min-width:0;}
   .card{background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:22px;}
@@ -186,6 +188,33 @@
   <!-- 1. COVER -->
   <section class="slide cover active">
     <div class="glow"></div><div class="glow2"></div>
+    <svg class="coverart" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- 산지 바구니(원형) -->
+      <circle cx="1040" cy="430" r="262" fill="none" stroke="#46d873" stroke-width="2" opacity="0.14"/>
+      <circle cx="1040" cy="430" r="200" fill="#18ab4a" opacity="0.07"/>
+      <!-- 새싹(산지·제철·자람) -->
+      <g opacity="0.5">
+        <path d="M1040 560 C1040 470 1040 425 1040 392" stroke="#46d873" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <ellipse cx="1004" cy="418" rx="42" ry="21" fill="#18ab4a" transform="rotate(-32 1004 418)" opacity="0.65"/>
+        <ellipse cx="1078" cy="410" rx="44" ry="22" fill="#46d873" transform="rotate(30 1078 410)" opacity="0.6"/>
+      </g>
+      <!-- 토마토 -->
+      <g opacity="0.5">
+        <circle cx="918" cy="500" r="62" fill="#e0322f" opacity="0.42"/>
+        <path d="M918 444 C926 430 944 428 952 432 C944 446 930 450 918 444 Z" fill="#46d873" opacity="0.7"/>
+      </g>
+      <!-- 잎채소 -->
+      <circle cx="1150" cy="520" r="50" fill="#0a8f33" opacity="0.34"/>
+      <!-- 옥수수/원물 -->
+      <ellipse cx="1075" cy="585" rx="34" ry="62" fill="#46d873" opacity="0.3" transform="rotate(18 1075 585)"/>
+      <!-- 팔도(八道) 8개 점 -->
+      <g fill="#46d873" opacity="0.32">
+        <circle cx="852" cy="150" r="6"/><circle cx="930" cy="116" r="5"/>
+        <circle cx="1008" cy="150" r="4.5"/><circle cx="1086" cy="120" r="6"/>
+        <circle cx="1150" cy="170" r="5"/><circle cx="900" cy="210" r="4"/>
+        <circle cx="1058" cy="206" r="4.5"/><circle cx="1160" cy="250" r="4"/>
+      </g>
+    </svg>
     <div class="wordmark"><span class="mk">팔도감</span> 전국팔도 제철먹거리</div>
     <div class="kicker" style="color:#46d873">Performance Growth · 퍼포먼스 마케터 지원</div>
     <h1 style="margin-top:14px;">산지직송을 넘어,<br><span class="bigorange">'건강하게 먹는 재미'를 판다</span></h1>
