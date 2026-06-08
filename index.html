@@ -1,772 +1,417 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>팔도감 퍼포먼스 마케팅 전략 ｜ 이도형</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>팔도감 — 산지로 락인하는 퍼포먼스 그로스 전략 ｜ 이도형</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 <style>
   :root{
-    --ink:#16201a; --charcoal:#2c352e; --gray:#6d756f; --faint:#a6aea8; --line:#e9eeea;
-    --green:#0a8f33; --green-d:#05691f; --green-l:#28b257; --green-bg:#e7f6ec;
-    --red:#ec083f; --red-d:#c4063434; --red-bg:#fff0f3;
-    --amber:#e8761c; --amber-d:#bf5f0d; --amber-bg:#fff4ea;
-    --tint:#f4f8f5; --navy:#06310f;
+    --ink:#0F1311; --ink2:#202b24; --green:#0a8f33; --green-d:#067a2a; --green-soft:#eaf7ee;
+    --green-border:#cce9d3; --red:#e0322f; --red-soft:#fdeceb;
+    --gray:#727a74; --gray2:#969d97; --line:#ECEEEC; --bg:#FFFFFF;
+    --soft:#F6F8F6; --soft2:#EFF2EF;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  body{font-family:'Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--charcoal);background:#d9ddd9;line-height:1.55;}
-  .hint{position:fixed;top:14px;right:14px;z-index:99;background:var(--green);color:#fff;font-size:13px;padding:9px 14px;border-radius:30px;box-shadow:0 4px 16px rgba(10,143,51,.3);}
-  .hint b{color:#fff;text-decoration:underline;}
-  .deck{display:flex;flex-direction:column;align-items:center;gap:26px;padding:40px 0 64px;}
-  .slide{width:1280px;height:720px;background:#fff;position:relative;overflow:hidden;padding:42px 56px 50px;box-shadow:0 12px 44px rgba(20,32,24,.14);display:flex;flex-direction:column;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+    background:#161a17; color:var(--ink); overflow:hidden; -webkit-font-smoothing:antialiased;}
+  #stage{position:fixed; inset:0; display:flex; align-items:center; justify-content:center;}
+  #scaler{width:1280px; height:720px; position:relative; transform-origin:center center;
+    box-shadow:0 30px 80px rgba(0,0,0,.45); background:#fff;}
+  .slide{position:absolute; inset:0; width:1280px; height:720px; background:var(--bg); overflow:hidden;
+    padding:54px 72px; display:none; flex-direction:column; opacity:0; transition:opacity .35s ease;}
+  .slide.active{display:flex; opacity:1;}
 
-  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex:0 0 auto;}
-  .stepper{display:flex;align-items:center;}
-  .step{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--faint);}
-  .step .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:#eef0ee;color:var(--faint);}
-  .step.done{color:var(--green-d);} .step.done .n{background:var(--green-bg);color:var(--green-d);}
-  .step.active{color:var(--ink);} .step.active .n{background:var(--green);color:#fff;box-shadow:0 0 0 4px var(--green-bg);}
-  .sep{width:26px;height:2px;background:#e2e6e2;margin:0 11px;border-radius:2px;}
-  .brandtag{font-size:12px;font-weight:800;letter-spacing:.3px;color:var(--faint);}
-  .brandtag b{color:var(--green);}
+  .kicker{display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:700;
+    letter-spacing:.04em; color:var(--green); text-transform:uppercase;}
+  .kicker::before{content:""; width:22px; height:3px; background:var(--green); border-radius:2px;}
+  h1{font-size:62px; font-weight:800; line-height:1.12; letter-spacing:-.02em;}
+  h2{font-size:37px; font-weight:800; line-height:1.2; letter-spacing:-.02em; color:var(--ink);}
+  h3{font-size:21px; font-weight:700; letter-spacing:-.01em;}
+  .sub{font-size:19px; color:var(--gray); font-weight:500; line-height:1.5;}
+  .em{color:var(--green);} b,strong{font-weight:800;}
+  .slide-head{margin-bottom:20px;} .slide-head .kicker{margin-bottom:12px;}
 
-  .lede{font-size:13.5px;color:var(--gray);font-weight:700;margin-bottom:5px;}
-  .stitle{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-1.1px;line-height:1.24;}
-  .stitle .i{color:var(--green);} .stitle .r{color:var(--red-d);} .stitle .a{color:var(--amber-d);}
-  .body{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;min-height:0;}
-  .take{font-size:17px;font-weight:700;color:var(--ink);line-height:1.5;}
-  .take .hi{background:linear-gradient(transparent 58%,var(--green-bg) 58%);padding:0 3px;}
-  .take .hir{background:linear-gradient(transparent 58%,var(--red-bg) 58%);padding:0 3px;}
-  .take .hia{background:linear-gradient(transparent 58%,var(--amber-bg) 58%);padding:0 3px;}
-  .pageno{position:absolute;right:56px;bottom:22px;font-size:12px;color:var(--faint);font-weight:700;}
-  b.k{font-weight:800;color:var(--ink);}
-  .i{color:var(--green);} .r{color:var(--red-d);} .a{color:var(--amber-d);}
+  .foot{position:absolute; left:72px; right:72px; bottom:22px; display:flex; align-items:center;
+    justify-content:space-between; font-size:13px; color:var(--gray2); font-weight:600;}
+  .foot .logo{font-weight:800; letter-spacing:.02em; color:var(--ink);}
+  .foot .logo .dot{color:var(--green);}
 
-  .row{display:flex;gap:16px;}
-  .col{flex:1;min-width:0;}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:0 2px 10px rgba(20,32,24,.04);}
-  .card.tint{background:var(--tint);box-shadow:none;}
-  .card h3{font-size:15.5px;font-weight:800;color:var(--ink);margin-bottom:7px;}
-  .card p{font-size:13.5px;color:#4f574f;}
-  ul.clean{list-style:none;} ul.clean li{position:relative;padding-left:18px;font-size:13px;color:#46504a;margin:7px 0;line-height:1.5;}
-  ul.clean li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--green);}
-  .tag{display:inline-block;font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px;}
-  .tag.i{background:var(--green-bg);color:var(--green-d);} .tag.r{background:var(--red-bg);color:var(--red-d);} .tag.a{background:var(--amber-bg);color:var(--amber-d);} .tag.g{background:#e7f8f3;color:#0c9a78;}
-  .big{font-size:38px;font-weight:800;color:var(--green);letter-spacing:-1.5px;line-height:1;}
-  .big.r{color:var(--red-d);} .big.a{color:var(--amber-d);} .big .u{font-size:14px;font-weight:700;color:var(--gray);letter-spacing:0;}
-  .num-l{font-size:12px;color:#525a52;margin-top:7px;font-weight:600;line-height:1.4;}
-  .src{font-size:10px;color:var(--faint);}
-  .note{font-size:10.5px;color:var(--faint);margin-top:9px;line-height:1.5;}
-  .srcline{position:absolute;left:56px;bottom:21px;font-size:10px;color:var(--faint);line-height:1.45;max-width:1050px;}
-  .gloss{background:var(--green-bg);border-radius:12px;padding:10px 15px;font-size:12.5px;color:var(--charcoal);font-weight:600;display:flex;align-items:center;gap:8px;line-height:1.45;}
-  .gloss b{color:var(--green-d);font-weight:800;}
+  .cover{background:var(--ink); color:#fff; justify-content:center; padding:74px 84px;}
+  .cover h1{color:#fff; font-size:66px;}
+  .cover .wordmark{font-size:28px; font-weight:800; letter-spacing:.04em; margin-bottom:40px;}
+  .cover .wordmark .mk{background:#fff;color:var(--green-d);border-radius:9px;padding:3px 11px;letter-spacing:-1px;}
+  .cover .sub{color:#B8BFB9; font-size:21px; margin-top:22px; max-width:960px;}
+  .cover .tag{display:inline-block; padding:11px 19px; border:1.5px solid #36403a;
+    border-radius:999px; font-size:14.5px; color:#cfd4d0; font-weight:600;}
+  .cover .bigorange,.cover .em{color:#46d873;}
+  .cover .glow{position:absolute; width:560px; height:560px; right:-130px; top:-150px;
+    background:radial-gradient(circle, rgba(20,170,70,.40), transparent 65%); filter:blur(8px);}
+  .cover .glow2{position:absolute; width:380px; height:380px; left:-120px; bottom:-160px;
+    background:radial-gradient(circle, rgba(224,50,47,.16), transparent 65%); filter:blur(8px);}
 
-  /* COVER */
-  .cover{padding:0;position:relative;background:var(--navy);overflow:hidden;}
-  .coverbg{position:absolute;inset:0;background:
-     radial-gradient(900px 600px at 86% 12%, rgba(40,178,87,.30), transparent 60%),
-     radial-gradient(700px 520px at 12% 100%, rgba(236,8,63,.12), transparent 55%),
-     linear-gradient(135deg,#06310f 0%,#0a4a1a 55%,#0c5a20 100%);}
-  .coverpattern{position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:300px;opacity:.10;filter:grayscale(.2);line-height:.9;}
-  .cover .left{position:relative;z-index:3;width:74%;padding:0 60px;display:flex;flex-direction:column;justify-content:center;height:100%;}
-  .wordmark{font-size:25px;font-weight:800;letter-spacing:-.5px;color:#fff;margin-bottom:28px;display:flex;align-items:center;gap:10px;}
-  .wordmark .mk{background:#fff;color:var(--green-d);border-radius:9px;padding:4px 11px;font-size:21px;letter-spacing:-1px;}
-  .cover .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:2px;color:#9be8b0;margin-bottom:18px;}
-  .cover h1{font-size:43px;font-weight:800;color:#fff;letter-spacing:-1.8px;line-height:1.3;}
-  .cover h1 .g{background:linear-gradient(90deg,#a9f7c0,#7fe89c,#e8f7a0);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .cover .spine{margin-top:24px;font-size:16.5px;font-weight:700;color:#bfe6c9;line-height:1.55;border-left:3px solid var(--green-l);padding-left:15px;}
-  .cover .spine b{color:#fff;}
-  .cover .meta{margin-top:40px;font-size:13px;color:#7fae8b;}
-  .cover .meta b{color:#dffae6;}
+  .row{display:flex; gap:18px;} .col{flex:1; min-width:0;}
+  .card{background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:22px;}
+  .card.dark{background:var(--ink); color:#fff;}
+  .card.green{background:var(--green-soft); border-color:var(--green-border);}
+  .card .num{font-size:13.5px; font-weight:800; color:var(--green); margin-bottom:8px; letter-spacing:.03em;}
+  .card h3{margin-bottom:7px;}
+  .card p{font-size:16px; color:var(--ink2); line-height:1.5;}
+  .card.dark p{color:#cfd6d0;}
+  .card .ic{font-size:33px; margin-bottom:7px; display:block;}
 
-  /* summary cards */
-  .sumgrid{display:flex;gap:14px;}
-  .sc{flex:1;background:var(--tint);border-radius:16px;padding:19px 19px;border-top:5px solid var(--green);}
-  .sc:nth-child(2){border-top-color:var(--red);}
-  .sc:nth-child(3){border-top-color:var(--green-l);}
-  .sc:nth-child(4){border-top-color:var(--amber);}
-  .sc .sl{font-size:14.5px;font-weight:800;color:var(--ink);margin-bottom:9px;}
-  .sc:nth-child(1) .sl{color:var(--green-d);} .sc:nth-child(2) .sl{color:var(--red-d);}
-  .sc:nth-child(3) .sl{color:var(--green);} .sc:nth-child(4) .sl{color:var(--amber-d);}
-  .sc p{font-size:14px;color:#2f372f;line-height:1.6;font-weight:500;}
+  ul.clean{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  ul.clean li{position:relative; padding-left:22px; font-size:16px; line-height:1.45; color:var(--ink2);}
+  ul.clean li::before{content:""; position:absolute; left:2px; top:9px; width:8px; height:8px; background:var(--green); border-radius:3px;}
+  ul.clean li b{color:var(--ink);}
 
-  .stats{display:flex;gap:12px;flex-wrap:wrap;}
-  .stat{flex:1;min-width:0;background:var(--tint);border-radius:14px;padding:15px 13px;text-align:center;}
+  .statcard{flex:1; background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
+  .statcard .n{font-size:48px; font-weight:800; color:var(--green); line-height:1; letter-spacing:-.02em;}
+  .statcard .n .u{font-size:22px; color:var(--gray2);}
+  .statcard.red .n{color:var(--red);}
+  .statcard .l{font-size:15px; color:var(--ink2); font-weight:600; margin-top:12px; line-height:1.45;}
+  .statcard .l b{color:var(--ink);}
 
-  /* compare table */
-  table.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(20,32,24,.05);}
-  table.cmp th,table.cmp td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle;}
-  table.cmp thead th{background:var(--green);color:#fff;font-weight:800;font-size:13px;}
-  table.cmp thead th.kurly{background:#8a8f8a;}
-  table.cmp td.rl{font-weight:800;color:var(--ink);background:#fafbfa;width:120px;}
-  table.cmp tbody tr:last-child td{border-bottom:none;}
-  table.cmp td.pal{background:var(--green-bg);} table.cmp td.pal b{color:var(--green-d);}
+  .chip{display:inline-flex; align-items:center; gap:7px; padding:9px 15px; border-radius:999px;
+    font-size:14.5px; font-weight:700; background:#fff; border:1.5px solid var(--line); color:var(--ink2);}
+  .chip b{color:var(--green);}
+  .chiprow{display:flex; gap:10px; flex-wrap:wrap;}
 
-  /* ad library cards */
-  .adgrid{display:flex;gap:13px;align-items:stretch;}
-  .adcol{flex:1;border-radius:16px;border:1px solid var(--line);padding:14px 15px;background:#fff;box-shadow:0 2px 10px rgba(20,32,24,.04);display:flex;flex-direction:column;}
-  .adcol.kurly{border-top:4px solid #7a4fd0;}
-  .adcol.great{border-top:4px solid var(--amber);}
-  .adcol.pal{border-top:4px solid var(--green);background:var(--green-bg);border-color:#c7e8cf;}
-  .adcol .an{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;}
-  .adcol .an .nm{font-size:14.5px;font-weight:800;color:var(--ink);}
-  .adcol .an .ct{font-size:22px;font-weight:800;letter-spacing:-1px;}
-  .adcol.kurly .ct{color:#7a4fd0;} .adcol.great .ct{color:var(--amber-d);} .adcol.pal .ct{color:var(--green-d);}
-  .adcol .ds{font-size:11px;color:var(--gray);margin-bottom:9px;font-weight:600;}
-  .adq{font-size:11.5px;color:#3f473f;background:var(--tint);border-radius:9px;padding:7px 9px;margin:5px 0;line-height:1.4;}
-  .adcol.pal .adq{background:#fff;}
-  .adq b{color:var(--ink);font-weight:800;}
-  .admeta{font-size:10.5px;color:var(--gray);margin-top:auto;padding-top:8px;line-height:1.4;}
-  .admeta b{color:var(--ink);}
+  .insight{display:flex; gap:13px; align-items:flex-start; background:var(--green-soft);
+    border:1px solid var(--green-border); border-radius:16px; padding:16px 20px;}
+  .insight.red{background:var(--red-soft); border-color:#f6d4d2;}
+  .insight .ic{font-size:20px;} .insight p{font-size:16px; line-height:1.5; color:var(--ink2);}
+  .insight p b{color:var(--ink);} .hl{color:var(--green); font-weight:800;} .hlr{color:var(--red); font-weight:800;}
 
-  /* playbook steps */
-  .pbk{display:flex;gap:11px;}
-  .pbc{flex:1;border-radius:14px;border:1px solid var(--line);padding:14px 15px;box-shadow:0 2px 10px rgba(20,32,24,.04);display:flex;flex-direction:column;}
-  .pbc .pbn{font-size:10.5px;font-weight:800;color:#7a4fd0;background:#f1ecfb;border-radius:20px;padding:3px 10px;display:inline-block;margin-bottom:8px;align-self:flex-start;}
-  .pbc h3{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px;line-height:1.3;}
-  .pbc p{font-size:11.5px;color:#525a52;line-height:1.45;}
-  .pbc .pbm{font-size:11px;font-weight:800;color:#7a4fd0;margin-top:auto;padding-top:7px;}
+  .flow{display:flex; align-items:stretch; gap:0;}
+  .flowstep{flex:1; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:18px 16px;}
+  .flowstep.kill{background:var(--red-soft); border-color:#f6d4d2;}
+  .flowstep.scale{background:var(--green-soft); border-color:var(--green-border);}
+  .flowstep .stg{font-size:12px; font-weight:800; color:var(--green); letter-spacing:.03em;}
+  .flowstep.kill .stg{color:var(--red);}
+  .flowstep h3{font-size:17px; margin:6px 0 8px;}
+  .flowstep p{font-size:13px; color:var(--ink2); line-height:1.45;}
+  .flowarr{display:flex; align-items:center; justify-content:center; padding:0 7px; color:var(--green); font-size:22px; font-weight:800;}
 
-  /* bottleneck / observation */
-  .btl{display:flex;gap:12px;}
-  .btlc{flex:1;border-radius:16px;padding:15px 15px;border:1px solid var(--line);background:#fff;box-shadow:0 2px 10px rgba(20,32,24,.04);display:flex;flex-direction:column;}
-  .btlc .hd{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
-  .btlc .bn{width:26px;height:26px;border-radius:8px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 auto;}
-  .btlc.warn .bn{background:var(--amber);}
-  .btlc h3{font-size:14px;font-weight:800;color:var(--ink);line-height:1.25;}
-  .btlc .easy{background:var(--green-bg);border-radius:10px;padding:8px 10px;font-size:11.5px;color:#1f5e34;font-weight:700;line-height:1.4;margin-bottom:8px;}
-  .btlc.warn .easy{background:var(--amber-bg);color:#8a4b1a;}
-  .btlc p{font-size:11.5px;color:#525a52;line-height:1.5;}
-  .btlc .m{font-size:11px;font-weight:800;color:var(--green-d);margin-top:auto;padding-top:7px;}
-  .btlc.warn .m{color:var(--amber-d);}
+  .refgrid{display:flex; gap:16px;}
+  .refcard{flex:1; background:var(--soft); border:1px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column;}
+  .refcard .imgwrap{height:300px; background:#fff; display:flex; align-items:flex-start; justify-content:center; overflow:hidden; border-bottom:1px solid var(--line);}
+  .refcard img{width:100%; object-fit:cover; object-position:top center;}
+  .refcard.portrait .imgwrap{height:300px;}
+  .refcard.portrait img{width:auto; height:100%; object-fit:contain;}
+  .refcard .tt{padding:12px 15px 3px; font-size:14px; font-weight:800;}
+  .refcard .tt span{color:var(--green);} .refcard .tt span.r{color:var(--red);}
+  .refcard .cap{padding:0 15px 13px; font-size:13px; color:var(--ink2); line-height:1.45;}
 
-  /* strategy head */
-  .strathead{display:flex;align-items:center;gap:13px;background:var(--green-bg);border-radius:13px;padding:11px 17px;margin-bottom:14px;}
-  .strathead .b{background:var(--green);color:#fff;font-size:11.5px;font-weight:800;padding:5px 12px;border-radius:20px;flex:0 0 auto;}
-  .strathead .t{font-size:13.5px;font-weight:700;color:var(--charcoal);line-height:1.45;}
-  .strathead .t b{color:var(--green-d);}
-  .actcard{flex:1;border-radius:15px;border:1px solid var(--line);padding:15px 18px;box-shadow:0 2px 10px rgba(20,32,24,.04);}
-  .actcard h3{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px;}
-  .msg{background:var(--ink);border-radius:11px;padding:11px 14px;color:#fff;font-size:12.5px;line-height:1.5;margin-top:8px;}
-  .msg b{color:#7fe89c;}
+  table{width:100%; border-collapse:collapse; font-size:15px;}
+  th,td{text-align:left; padding:12px 15px; border-bottom:1px solid var(--line); vertical-align:top;}
+  thead th{background:var(--ink); color:#fff; font-weight:700; font-size:14px;}
+  thead th:first-child{border-top-left-radius:12px;} thead th:last-child{border-top-right-radius:12px;}
+  td.h{font-weight:800; color:var(--ink); background:var(--soft2); width:180px;}
 
-  /* reference chip */
-  .refbar{display:flex;gap:9px;margin-top:10px;flex-wrap:wrap;}
-  .ref{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:11.5px;color:#46504a;line-height:1.35;flex:1;}
-  .ref .rl{font-weight:800;color:var(--ink);font-size:12px;}
-  .ref .ri{width:24px;height:24px;border-radius:7px;background:#f1ecfb;color:#7a4fd0;display:grid;place-items:center;font-weight:800;font-size:11px;flex:0 0 auto;}
+  .pill{display:inline-block; padding:6px 13px; border-radius:999px; font-size:14px; font-weight:700; background:var(--green-soft); color:var(--green-d);}
+  .srcnote{font-size:11.5px; color:var(--gray2); font-weight:500; margin-top:13px; line-height:1.4;}
+  .srcnote b{color:var(--gray); font-weight:700;}
 
-  /* phone mock */
-  .mock{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 26px rgba(20,32,24,.1);padding:16px 16px 14px;}
-  .mock .mh{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:2px;}
-  .mock .ms{font-size:10.5px;color:var(--gray);margin-bottom:10px;}
-  .chatb{font-size:11.5px;border-radius:12px;padding:8px 11px;margin-bottom:6px;max-width:88%;line-height:1.4;}
-  .chatb.sys{background:var(--tint);color:#2c352e;border-bottom-left-radius:4px;}
-  .chatb.me{background:var(--green);color:#fff;margin-left:auto;border-bottom-right-radius:4px;}
-  .relief{background:var(--green-bg);border-radius:10px;padding:8px 11px;font-size:11.5px;font-weight:700;color:var(--green-d);text-align:center;margin-top:3px;}
-  .mockbtn{background:var(--green);color:#fff;text-align:center;font-weight:800;font-size:12px;padding:10px;border-radius:11px;margin-top:8px;}
+  /* phone chat mock */
+  .mock{background:#fff; border:1px solid var(--line); border-radius:18px; padding:16px 16px 14px; box-shadow:0 6px 22px rgba(20,40,25,.07);}
+  .mock .mh{font-size:13px; font-weight:800; color:var(--ink); margin-bottom:9px;}
+  .chatb{font-size:13.5px; border-radius:13px; padding:9px 12px; margin-bottom:7px; max-width:88%; line-height:1.4;}
+  .chatb.sys{background:var(--soft2); color:var(--ink2); border-bottom-left-radius:4px;}
+  .chatb.me{background:var(--green); color:#fff; margin-left:auto; border-bottom-right-radius:4px;}
+  .relief{background:var(--green-soft); border:1px solid var(--green-border); border-radius:11px; padding:9px 12px; font-size:13px; font-weight:700; color:var(--green-d); text-align:center; margin-top:3px;}
 
-  /* persona cards (care food) */
-  .pcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(20,32,24,.04);}
-  .pcard .ph{padding:11px 13px;background:var(--green-bg);font-weight:800;color:var(--green-d);font-size:13px;border-bottom:1px solid #d6ecda;}
-  .pcard .pb{padding:12px 13px;display:flex;flex-direction:column;gap:9px;}
-  .pcard .pain{font-size:11.5px;color:#7a2e2e;font-style:italic;background:var(--red-bg);padding:7px 9px;border-radius:8px;border-left:3px solid var(--red);line-height:1.4;}
-  .pcard .match{font-size:11.5px;color:#46504a;line-height:1.5;}
-  .pcard .match b{color:var(--green-d);}
-
-  /* roadmap */
-  .phase{display:flex;gap:12px;}
-  .pc{flex:1;border-radius:16px;padding:16px;border:1px solid var(--line);}
-  .pc.p1{background:var(--green-bg);border-color:#cbe9d2;} .pc.p2{background:var(--tint);} .pc.p3{background:var(--tint);}
-  .pn{font-size:11px;font-weight:800;color:#fff;background:var(--green);padding:4px 11px;border-radius:20px;display:inline-block;margin-bottom:9px;}
-  .p2 .pn,.p3 .pn{background:var(--green-l);}
-  .pc h3{font-size:14.5px;font-weight:800;color:var(--ink);margin-bottom:6px;}
-  .pc li{font-size:12px;color:#46504a;margin:5px 0;padding-left:14px;position:relative;list-style:none;line-height:1.4;}
-  .pc li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--green);}
-  .arr2{display:flex;align-items:center;color:var(--faint);font-size:21px;font-weight:800;}
-
-  table.kpi{width:100%;border-collapse:collapse;font-size:13px;}
-  table.kpi th,table.kpi td{border-bottom:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:middle;}
-  table.kpi th{background:var(--green);color:#fff;font-weight:700;font-size:12px;border:none;}
-  table.kpi tr td:first-child{font-weight:800;color:var(--green-d);width:24%;}
-  table.kpi tbody tr:nth-child(even){background:var(--tint);}
-
-  /* impact */
-  .impact{display:flex;gap:13px;}
-  .ic{flex:1;background:var(--tint);border-radius:16px;padding:16px 14px;text-align:center;}
-  .ic .iv{font-size:27px;font-weight:800;color:var(--green);letter-spacing:-1.2px;line-height:1.05;}
-  .ic .iv .ar{color:var(--green-l);}
-  .ic .il{font-size:11.5px;color:#525a52;margin-top:8px;font-weight:600;line-height:1.4;}
-  .ic .ib{font-size:10px;color:var(--faint);margin-top:4px;}
-
+  #progress{position:fixed; top:0; left:0; height:4px; background:var(--green); width:0; z-index:50; transition:width .3s;}
+  #counter{position:fixed; right:18px; bottom:14px; z-index:50; font-size:13px; color:#fff; background:rgba(0,0,0,.55); padding:5px 12px; border-radius:999px; font-weight:700;}
+  #hint{position:fixed; left:18px; bottom:14px; z-index:50; font-size:12px; color:#9aa0a6;}
+  .navzone{position:fixed; top:0; height:100%; width:13%; z-index:40; cursor:pointer;}
+  #prevZone{left:0;} #nextZone{right:0;}
   @media print{
-    body{background:#fff;} .hint{display:none;}
-    .deck{gap:0;padding:0;}
-    .slide{box-shadow:none;page-break-after:always;break-after:page;}
-    @page{size:1280px 720px;margin:0;}
+    body{overflow:visible; background:#fff;} #stage{position:static;}
+    #scaler{transform:none!important; box-shadow:none;}
+    .slide{display:flex!important; opacity:1!important; position:relative; page-break-after:always; box-shadow:none;}
+    #progress,#counter,#hint,.navzone{display:none!important;}
+    @page{size:1280px 720px; margin:0;}
   }
 </style>
 </head>
 <body>
-<div class="hint">키보드 <b>Ctrl/⌘+P</b> → "PDF로 저장", 용지 가로 → PDF 완성</div>
-<div class="deck">
+<div id="progress"></div>
+<div id="stage"><div id="scaler">
 
-<!-- 1 COVER -->
-<section class="slide cover">
-  <div class="coverbg"></div>
-  <div class="coverpattern">🌾</div>
-  <div class="left">
+  <!-- 1. COVER -->
+  <section class="slide cover active">
+    <div class="glow"></div><div class="glow2"></div>
     <div class="wordmark"><span class="mk">팔도감</span> 전국팔도 제철먹거리</div>
-    <div class="eyebrow">퍼포먼스 마케터 지원 · 면접 발표</div>
-    <h1>4050을 통째로 가진<br>단 하나의 커머스, 팔도감은<br><span class="g">광고비를 어떻게 더 잘 쓸까?</span></h1>
-    <div class="spine">컬리가 못 가진 <b>산지직송 × 4050 오디언스</b>를 무기로,<br><b>CPO를 낮추고 LTV로 허용 CAC를 키우는</b> 퍼포먼스 시나리오</div>
-    <div class="meta"><b>이도형</b> ｜ Performance Marketer 지원 ｜ 2026 ｜ 현황 → 진단 → 전략 → 실행</div>
-  </div>
-</section>
+    <div class="kicker" style="color:#46d873">Performance Growth · 퍼포먼스 마케터 지원</div>
+    <h1 style="margin-top:15px;">할인으로 사는 컬리,<br><span class="bigorange">산지로 락인하는 팔도감</span></h1>
+    <p class="sub">컬리가 Meta에서 할인쿠폰 310건을 쏟아부을 때, 팔도감은 토스 4050 숏폼으로 CPO를 47% 낮췄습니다.<br>저는 이 비대칭을 무기로 — <b style="color:#fff;">빠르게 시도하고 빠르게 배우며</b> — 팔도감의 광고비를 더 잘 쓰겠습니다.</p>
+    <div style="margin-top:30px; display:flex; gap:11px; flex-wrap:wrap;">
+      <span class="tag" style="border-color:var(--green); color:#fff;">🎯 4050이 사는 채널에서 산지 숏폼</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">🔁 Test &amp; Learn — 되는 것만 키운다</span>
+    </div>
+    <span class="tag" style="margin-top:16px;">이도형 ｜ Performance Marketer 지원 · 면접 발표용 ｜ 2026</span>
+  </section>
 
-<!-- 2 EXECUTIVE SUMMARY -->
-<section class="slide">
-  <div class="topbar"><div class="stepper"><span class="step active"><span class="n">＝</span>한 장 요약</span></div><span class="brandtag"><b>팔도감</b> ╳ 이도형</span></div>
-  <div class="lede">EXECUTIVE SUMMARY</div>
-  <h1 class="stitle">'할인으로 사 온 고객'이 아니라 → <span class="i">'산지로 락인한 4050'</span>으로 이긴다</h1>
-  <div class="body">
-    <div class="sumgrid">
-      <div class="sc"><div class="sl">① 현황</div><p>라포랩스의 신선식품 버티컬.<br>런칭 2년 만에 <b class="k">흑자 전환</b>·상반기 <b class="k">+150%</b>로 PMF 검증.</p></div>
-      <div class="sc"><div class="sl">② 진단</div><p>경쟁사는 <b class="k">할인·완제품</b>으로 출혈 중.<br>광고 라이브러리가 그 차이를 그대로 보여준다.</p></div>
-      <div class="sc"><div class="sl">③ 퍼포먼스 레버</div><p><b class="k">채널·소재</b>(CPO↓) · <b class="k">리타게팅·CRM</b>(재구매) · <b class="k">LTV 멤버십</b>(허용 CAC↑) · 신규 오디언스.</p></div>
-      <div class="sc"><div class="sl">④ 운영</div><p>소재→측정→스케일이<br><b class="k">주 단위로 도는 퍼포먼스 루프</b>로.</p></div>
+  <!-- 2. PROBLEM -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">The Problem · 신선식품의 함정</span>
+      <h2>'할인으로 산 고객'은 CAC를 회수하기 전에 무너진다</h2></div>
+    <div class="row" style="align-items:stretch; gap:16px;">
+      <div class="statcard red"><div class="n">중단</div><div class="l"><b>오늘회</b> — 75만 회원·170억 투자에도 현금흐름 붕괴로 서비스 종료(2022)</div></div>
+      <div class="statcard red"><div class="n">무흑자</div><div class="l"><b>정육각</b> — 수년 적자·회생절차. 매스 마케팅 축소 후 CRM으로 전환</div></div>
+      <div class="statcard red"><div class="n">적자</div><div class="l"><b>새벽배송</b> — 쿠폰 출혈 경쟁으로 대부분 적자. 흑자는 오아시스 정도</div></div>
     </div>
-    <p class="take" style="margin-top:22px;">컬리가 <span class="hir">Meta에서 할인쿠폰 310건</span>을 쏟아부을 때, 팔도감은 <span class="hi">토스 4050 숏폼으로 CPO를 47% 낮췄다.</span> 퍼포먼스 마케터로서 저는 <span class="hi">이 비대칭을 더 밀어붙이겠습니다.</span></p>
-  </div>
-  <div class="pageno">02 / 15</div>
-</section>
+    <div class="insight red" style="margin-top:20px;"><span class="ic">🩸</span><p>객단가는 낮고 재구매는 빠른데, <b>쿠폰·할인으로 데려온 트래픽은 비싸고 약하다.</b> 살아남은 곳의 공통 처방은 모두 <b class="hlr">'매스 할인 → CRM·데이터 리텐션'</b> 전환이었다.</p></div>
+    <div class="insight" style="margin-top:14px;"><span class="ic">🌱</span><p>팔도감은 <b>설립 2년 만에 흑자 전환</b> — 출혈 대신 산지·효율로 이미 다르게 풀었다. 퍼포먼스 마케터의 역할은 <b class="hl">이 효율을 더 밀어붙이는 것.</b></p></div>
+    <div class="srcnote"><b>출처</b> · 오늘회: 이코노미스트·머니투데이 / 정육각: mstacc 재무분석 / 새벽배송: 매거진한경 / 팔도감 흑자: 플래텀·이코노믹데일리(2024.7)</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Problem</span></div>
+  </section>
 
-<!-- 3 현황1 시장 & 트랙션 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step active"><span class="n">1</span>현황</span><span class="sep"></span>
-      <span class="step"><span class="n">2</span>진단</span><span class="sep"></span>
-      <span class="step"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">현황 분석</span>
-  </div>
-  <div class="lede">현황 ① ｜ 시장 & 팔도감 트랙션</div>
-  <h1 class="stitle">출혈 없이 <span class="i">2년 만에 흑자</span> — 검증된 PMF</h1>
-  <div class="body">
-    <div class="gloss" style="margin-bottom:13px;">🌾 <b>팔도감</b> = '퀸잇'으로 4050을 성공시킨 <b>라포랩스</b>의 신선식품 버티컬 (위수탁 산지직송). 누적 거래액 1.5조·앱 1,000만 다운로드.</div>
-    <p style="font-size:12px;font-weight:800;color:var(--gray);margin-bottom:7px;">팔도감 · 라포랩스 트랙션</p>
-    <div class="stats" style="margin-bottom:13px;">
-      <div class="stat"><div class="big">2024.6</div><div class="num-l">설립 2년 만 영업이익 흑자</div></div>
-      <div class="stat"><div class="big">+150<span class="u">%</span></div><div class="num-l">'24 상반기 누적 매출 성장</div></div>
-      <div class="stat"><div class="big">300<span class="u">만+</span></div><div class="num-l">누적 고객 (2022.2 런칭)</div></div>
-      <div class="stat"><div class="big">80<span class="u">%</span></div><div class="num-l">유저 중 45세 이상 비중(퀸잇)</div></div>
+  <!-- 3. SIGNAL (ad library, image-forward) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">The Signal · 광고 라이브러리가 보여주는 전장</span>
+      <h2>컬리는 '할인 310건'을 쏜다 — 팔도감의 전장은 거기가 아니다</h2></div>
+    <div class="refgrid" style="flex:1;">
+      <div class="refcard">
+        <div class="imgwrap"><img src="images/adlib-kurly.jpeg" alt="Meta 광고 라이브러리 — 컬리 검색 결과 ~310건"></div>
+        <div class="tt">컬리 — Meta 광고 <span class="r">~310건</span> 활성</div>
+        <div class="cap">"50% 할인 쿠폰", "67%+1.2만원 추가할인", "72% OFF" — <b>할인율로 도배</b>. 랜딩은 앱설치(OneLink), 비식품까지 DPA 자동노출.</div>
+      </div>
+      <div class="refcard">
+        <div class="imgwrap"><img src="images/adlib-pal.jpeg" alt="Meta 광고 라이브러리 — 팔도감 검색 결과 없음"></div>
+        <div class="tt">팔도감 — Meta 광고 <span>~0건</span></div>
+        <div class="cap">"검색 기준과 일치하는 광고가 없습니다." 팔도감은 <b>레드오션 Meta 할인전을 의도적으로 비켜</b> 토스·카카오·밴드에서 4050을 만난다.</div>
+      </div>
     </div>
-    <p style="font-size:12px;font-weight:800;color:var(--gray);margin-bottom:7px;">시장 기회</p>
-    <div class="stats">
-      <div class="stat"><div class="big a">3<span class="u">조원</span></div><div class="num-l">케어푸드 시장 ('25 전망)</div></div>
-      <div class="stat"><div class="big a">초고령</div><div class="num-l">'25 65세+ 인구 20% 진입</div></div>
-      <div class="stat"><div class="big">4050</div><div class="num-l">가장 구매력 큰 주부·액티브시니어</div></div>
-      <div class="stat"><div class="big">위수탁</div><div class="num-l">산지직송 = 중간 유통마진 제거</div></div>
-    </div>
-  </div>
-  <p class="srcline">출처 · 흑자/+150%: 이코노믹데일리·플래텀(라포테이블 2024.7) / 80%·1700%: AB180 라포랩스 인터뷰 / 누적 1.5조·1000만: 바이라인네트워크 / 케어푸드 3조·초고령: 삼정KPMG·식품음료신문</p>
-  <div class="pageno">03 / 15</div>
-</section>
+    <div class="insight" style="margin-top:16px;"><span class="ic">📌</span><p>같은 신선식품인데 <b>컬리는 '할인율'로, 팔도감은 '산지 진정성'으로</b> 싸운다 — 비용 구조와 고객의 질이 근본적으로 갈린다. <b class="hl">누구나 1분이면 검증 가능한 사실.</b></p></div>
+    <div class="srcnote"><b>출처</b> · Meta 광고 라이브러리(facebook.com/ads/library, 대한민국, 2026.6 직접 조회) — '컬리' ~310건 / '그리팅' ~9건 / '팔도감' 0건. 캡처는 실제 화면.</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Signal</span></div>
+  </section>
 
-<!-- 4 현황2 USP + 라포랩스 철학 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step active"><span class="n">1</span>현황</span><span class="sep"></span>
-      <span class="step"><span class="n">2</span>진단</span><span class="sep"></span>
-      <span class="step"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">현황 분석</span>
-  </div>
-  <div class="lede">현황 ② ｜ USP & 라포랩스의 4050 철학</div>
-  <h1 class="stitle">컬리와 <span class="i">마주 보는 고객도, 파는 방식도</span> 다르다</h1>
-  <div class="body">
-    <div class="row" style="align-items:stretch;">
-      <div class="col" style="flex:1.45;">
-        <table class="cmp">
-          <thead><tr><th>비교</th><th class="kurly">컬리 (Kurly)</th><th>팔도감 (8dogam)</th></tr></thead>
-          <tbody>
-            <tr><td class="rl">핵심 타겟</td><td>수도권 3040·1~2인 가구</td><td class="pal"><b>전국 4050 X세대 주부</b></td></tr>
-            <tr><td class="rl">소싱</td><td>직매입(물류센터 보관)</td><td class="pal"><b>위수탁 산지직송</b></td></tr>
-            <tr><td class="rl">무기</td><td>새벽배송·큐레이션</td><td class="pal"><b>신선·가격·생산자 실명</b></td></tr>
-            <tr><td class="rl">심리소구</td><td>프리미엄·편리함</td><td class="pal"><b>'진짜 산지'·1+1 인심</b></td></tr>
-          </tbody>
-        </table>
+  <!-- 4. ASSET (팔도감 site captures, image-forward) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">The Asset · 팔도감이 이미 가진 무기</span>
+      <h2>'산지 진정성 × 긴박성'은 이미 팔도감의 DNA다</h2></div>
+    <div class="refgrid" style="flex:1; align-items:stretch;">
+      <div class="refcard portrait">
+        <div class="imgwrap"><img src="images/8dogam-hero.jpeg" alt="팔도감 하루특가 타임딜 화면"></div>
+        <div class="tt">⏱️ 타임딜 · 신규 락인</div>
+        <div class="cap">"하루특가 00:18:46 남음", "처음이라면 무조건 사야 이득" — <b>긴박성·신규 훅이 기본 장착</b>.</div>
       </div>
-      <div class="col" style="flex:1;">
-        <div class="card tint" style="height:100%;">
-          <h3>🧭 라포랩스의 역발상</h3>
-          <ul class="clean">
-            <li>"<b class="k">4050도 2030과 프로세스는 같다</b> — 콘텐츠·타겟팅만 정교하게"</li>
-            <li>보편 채널(유튜브·카카오·네이버)에 <b class="k">'45세+ 여성' 정밀 타겟팅</b></li>
-            <li>페이드보다 <b class="k">오가닉(입소문) 우위</b> · 큰 글씨·후기형 영상</li>
-            <li>Airbridge·Braze 기반 <b class="k">데이터 검증·효율 집행</b></li>
-          </ul>
-        </div>
+      <div class="refcard portrait">
+        <div class="imgwrap"><img src="images/8dogam-cards.jpeg" alt="팔도감 생산자 실명·1+1 상품 카드"></div>
+        <div class="tt">👨‍🌾 생산자 실명 · 1+1</div>
+        <div class="cap">"경북청도 정문태", "1+1", "행사 후 비싸져요", ★4.9 — <b>진정성·인심·신뢰가 소재 안에</b>.</div>
+      </div>
+      <div class="col card green" style="flex:1.05; display:flex; flex-direction:column; justify-content:center;">
+        <h3 style="color:var(--green-d); margin-bottom:12px;">이미 검증된 퍼포먼스 자산</h3>
+        <ul class="clean">
+          <li><b>토스 산지 숏폼 → CPO 47%↓</b> (전환의 49%가 신규)</li>
+          <li><b>4050 80%</b> — 라포랩스가 통째로 락인한 오디언스</li>
+          <li><b>매일농장·매일목장</b> 앱테크 = 매일 켜는 리텐션 엔진</li>
+          <li><b>설립 2년 만 흑자</b> — 효율 DNA</li>
+        </ul>
       </div>
     </div>
-    <p class="take" style="margin-top:16px;">팔도감의 진짜 USP는 상품이 아니라 <span class="hi">'다른 커머스엔 없는, 통째로 모인 4050 오디언스'</span> — 공급자 유치력이자 해자다.</p>
-  </div>
-  <p class="srcline">출처 · USP 비교: 브런치 팔도감 서비스 분석·8dogam.com / 라포랩스 철학: AB180 라포랩스(퀸잇) 인터뷰</p>
-  <div class="pageno">04 / 15</div>
-</section>
+    <div class="srcnote"><b>출처</b> · 8dogam.com 직접 캡처(2026.6) · 토스애즈 인사이트(CPO 47%↓) · AB180 라포랩스 인터뷰(4050 80%) · 브런치 팔도감 분석(매일농장)</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Asset</span></div>
+  </section>
 
-<!-- 5 진단1 ★ 광고 라이브러리 해부 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step active"><span class="n">2</span>진단</span><span class="sep"></span>
-      <span class="step"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">광고 라이브러리 해부</span>
-  </div>
-  <div class="lede">진단 ① ｜ Meta 광고 라이브러리로 본 경쟁 지형 (KR, 2026.6 조회)</div>
-  <h1 class="stitle">컬리는 <span class="r">할인 310건</span>을 쏜다 — 팔도감의 전장은 <span class="i">거기가 아니다</span></h1>
-  <div class="body">
-    <div class="adgrid">
-      <div class="adcol kurly">
-        <div class="an"><span class="nm">컬리</span><span class="ct">~310</span></div>
-        <div class="ds">활성 광고 · 할인쿠폰 폭격형</div>
-        <div class="adq">"🚨전 상품 <b>50%할인</b> 쿠폰 지급 중!"</div>
-        <div class="adq">"📢최대 <b>67% + 1.2만원</b> 추가할인!"</div>
-        <div class="adq">"🎁<b>100원만 담아도</b> 무조건 50% 할인"</div>
-        <div class="admeta"><b>KURLY.ONELINK.ME</b>(앱설치 Web2App) · DPA 카탈로그(비식품까지 자동노출) · "여러 버전" 다이내믹</div>
-      </div>
-      <div class="adcol great">
-        <div class="an"><span class="nm">그리팅</span><span class="ct">~9</span></div>
-        <div class="ds">활성 광고 · 제철 콘텐츠형</div>
-        <div class="adq">"🌽 1년 중 오직 지금… <b>초당옥수수</b> 제철"</div>
-        <div class="adq">"제주에서 갓 수확… <b>사전예약</b> 진행 중"</div>
-        <div class="admeta">케어푸드 1위 브랜드도 <b>Meta 집행은 소량</b> · 메인 채널은 구독·CRM·홈쇼핑</div>
-      </div>
-      <div class="adcol pal">
-        <div class="an"><span class="nm">팔도감</span><span class="ct">~0</span></div>
-        <div class="ds">Meta 광고 라이브러리상 사실상 부재</div>
-        <div class="adq"><b>Meta에 없다.</b> 대신 <b>토스애즈·카카오·밴드</b>에서 4050을 만난다.</div>
-        <div class="adq">레드오션(Meta 할인전)을 <b>의도적으로 비켜선</b> 매체 전략.</div>
-        <div class="admeta"><b>'8dogam'·'팔도감' 키워드 모두 0건</b> — 다음 장 전략①에서 이 비대칭을 무기로 전환</div>
-      </div>
+  <!-- 5. BREAKTHROUGH / 제안 (hero) -->
+  <section class="slide cover" style="justify-content:center;">
+    <div class="glow"></div><div class="glow2"></div>
+    <span class="kicker" style="color:#46d873">The Proposal · 그래서, 제안합니다</span>
+    <h1 style="color:#fff; margin-top:14px; font-size:46px; line-height:1.22;">팔도감을 컬리식 <span style="color:#ff7a78;">'Meta 할인 경쟁'</span>에서 빼내,<br><span class="bigorange">4050이 사는 채널에서 '산지 진정성'으로 싸웁니다</span></h1>
+    <p class="sub" style="color:#cfd6d0; margin-top:26px; max-width:1000px;">토스·카카오·밴드에서 산지 숏폼으로 <b style="color:#fff;">신규를 싸게 모으고(CPO↓)</b>, 제철 CRM·매일농장·멤버십으로 <b style="color:#fff;">재구매를 락인(LTV↑)</b>합니다.<br>작동 원리는 하나 — <b style="color:#46d873;">빠르게 시도하고 빠르게 배운다.</b> 한 번에 하나씩 A/B로 검증해, <b style="color:#fff;">되는 것만 키웁니다.</b></p>
+    <div style="margin-top:30px; display:flex; gap:11px; flex-wrap:wrap;">
+      <span class="tag" style="border-color:var(--green); color:#fff;">① 산지 숏폼 · 4050 채널</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">② 제철 CRM · 앱테크 리텐션</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">③ LTV 멤버십</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">④ 4050 케어푸드 신규 오디언스</span>
     </div>
-    <div class="gloss" style="margin-top:13px;">📌 같은 신선식품인데 <b>컬리는 Meta에서 '할인율'로, 팔도감은 토스에서 '산지 진정성'으로</b> 싸운다 — 비용 구조와 고객의 질이 근본적으로 갈린다.</div>
-    <div style="margin-top:12px;display:flex;align-items:center;gap:16px;">
-      <img src="images/adlib-kurly.jpeg" alt="Meta 광고 라이브러리 컬리 활성 광고 캡처" style="width:600px;border:1px solid var(--line);border-radius:10px;box-shadow:0 3px 12px rgba(20,32,24,.1);">
-      <div style="flex:1;font-size:11.5px;color:#525a52;line-height:1.55;">
-        <span style="font-weight:800;color:var(--ink);">◀ 실제 캡처 — Meta 광고 라이브러리 '컬리' 검색 결과</span><br>
-        활성 할인 광고가 줄줄이("67%+1.2만원 추가할인", "100원만 담아도 50%"). CJ제일제당까지 <b>"컬리에서 특가중"</b>으로 입점사 광고를 태운다.<br>
-        <span style="color:var(--red-d);font-weight:800;">팔도감은 동일 검색에서 0건</span> — 누구나 1분이면 검증 가능.
-      </div>
-    </div>
-  </div>
-  <p class="srcline">출처 · Meta 광고 라이브러리(facebook.com/ads/library, 대한민국, 2026.6.8 조회): '컬리' ~310건 / '그리팅' ~9건 / '팔도감'·'8dogam' ~0건. 카피·캡처는 실제 게재 광고 원문.</p>
-  <div class="pageno">05 / 15</div>
-</section>
+    <div class="foot" style="left:84px; right:84px;"><span class="logo" style="color:#fff;"><span style="color:#46d873;">●</span> 팔도감 Performance</span><span style="color:#727a74;">The Proposal</span></div>
+  </section>
 
-<!-- 6 진단2 컬리 플레이북 + 반면교사 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step active"><span class="n">2</span>진단</span><span class="sep"></span>
-      <span class="step"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">경쟁사 플레이북</span>
-  </div>
-  <div class="lede">진단 ② ｜ 컬리 플레이북 4단계 & 신선식품의 함정</div>
-  <h1 class="stitle">컬리가 <span class="i">10년에 걸쳐 만든 락인</span>을, 팔도감은 더 싸게 복제한다</h1>
-  <div class="body">
-    <div class="pbk">
-      <div class="pbc"><span class="pbn">STEP 1 · 인지</span><h3>전지현 × 보라색</h3><p>단일 컬러·톱모델로 인지도 <b class="k">41%→70%</b>.</p><span class="pbm">→ 컬러·모델 자산화</span></div>
-      <div class="pbc"><span class="pbn">STEP 2 · 가입</span><h3>"적립금 ≥ 회비"</h3><p>월1,900원→2,000원 적립. <b class="k">13개월 100만</b> 가입.</p><span class="pbm">→ 가입장벽 0</span></div>
-      <div class="pbc"><span class="pbn">STEP 3 · 락인</span><h3>등급제·개인화 CRM</h3><p>재구매율 <b class="k">76.5%</b>, 멤버십이 <b class="k">매출 50%</b>·전환 6배.</p><span class="pbm">→ 3중 락인</span></div>
-      <div class="pbc"><span class="pbn">STEP 4 · 효율</span><h3>광고비 사이클</h3><p>흑자 직전 광고비 <b class="k">-39%</b>, 흑자 후 재투자.</p><span class="pbm">→ ROAS 운영</span></div>
+  <!-- 6. WHY 채널/4050 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Why 채널 · 4050은 다른 곳에서 산다</span>
+      <h2>채널이 다르면, 같은 예산도 단가가 다르다</h2></div>
+    <div class="row" style="align-items:stretch; gap:16px;">
+      <div class="statcard"><div class="n">70<span class="u">%+</span></div><div class="l"><b>토스 50대 광고 CTR.</b> 40대는 쇼핑·홈쇼핑 구매 빈도↑</div></div>
+      <div class="statcard"><div class="n">98.9<span class="u">%</span></div><div class="l"><b>카카오톡 전 연령 사용률 1위</b> → 비즈보드 도달·날씨/제철 연동</div></div>
+      <div class="statcard"><div class="n">80<span class="u">%</span></div><div class="l"><b>팔도감(퀸잇) 유저 중 45세+</b> — 통째로 모인 오디언스</div></div>
     </div>
-    <div class="row" style="margin-top:14px;">
-      <div class="btlc warn" style="flex:1;"><div class="hd"><span class="bn">!</span><h3>신선식품의 함정 — 쿠폰으로 산 고객은 마진을 무너뜨린다</h3></div>
-        <p style="font-size:12px;"><b class="k">오늘회</b> 75만 회원·170억 투자에도 현금흐름 붕괴로 서비스 중단(2022). <b class="k">정육각</b> 수년간 무흑자·회생. <b class="k">컬리·새벽배송</b>도 쿠폰 출혈로 장기 적자 — 생존 공식은 모두 <b class="k">'매스 할인 → CRM·데이터 리텐션'</b> 전환이었다.</p>
-      </div>
-    </div>
-    <p class="take" style="margin-top:14px;">교훈은 분명하다 — <span class="hir">할인으로 사 온 트래픽은 비싸고 약하다.</span> 팔도감은 <span class="hi">산지·제철·앱테크로 처음부터 '관계'를 산다.</span></p>
-  </div>
-  <p class="srcline">출처 · 컬리: 브랜드브리프·서울경제(멤버스)·비즈니스포스트(100만)·데일리한국(재구매율 76.5%, 2022.4)·패션비즈(흑자) / 반면교사: 이코노미스트·머니투데이(오늘회)·mstacc(정육각)·매거진한경(새벽배송)</p>
-  <div class="pageno">06 / 15</div>
-</section>
-
-<!-- 7 진단3 4대 과제 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step active"><span class="n">2</span>진단</span><span class="sep"></span>
-      <span class="step"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">4대 과제 도출</span>
-  </div>
-  <div class="lede">진단 ③ ｜ 그래서 팔도감이 풀어야 할 4가지</div>
-  <h1 class="stitle">강점을 <span class="i">증폭</span>하고, 다음 <span class="i">TAM</span>을 연다</h1>
-  <div class="body">
-    <div class="btl">
-      <div class="btlc"><div class="hd"><span class="bn">1</span><h3>신규 획득 효율</h3></div>
-        <div class="easy">"컬리식 Meta 할인전에 끌려가면 진다"</div>
-        <p>레드오션 Meta 대신, 검증된 <b class="k">토스·카카오·밴드 4050 채널</b>에서 산지 숏폼으로 CPO를 끌어내려야.</p>
-        <span class="m">▶ 전략 ①</span></div>
-      <div class="btlc"><div class="hd"><span class="bn">2</span><h3>재방문·리텐션</h3></div>
-        <div class="easy">"신선식품은 사놓고 잊으면 이탈한다"</div>
-        <p>제철 소비주기와 <b class="k">매일농장 앱테크</b>를 엮어 '매일 켜는 앱'으로 만들어야.</p>
-        <span class="m">▶ 전략 ②</span></div>
-      <div class="btlc"><div class="hd"><span class="bn">3</span><h3>객단가·LTV</h3></div>
-        <div class="easy">"할인 의존은 마진을 깎는다"</div>
-        <p>컬리식 <b class="k">'적립금≥회비' 락인 멤버십</b>으로 단발 할인 대신 LTV를 선확보.</p>
-        <span class="m">▶ 전략 ③</span></div>
-      <div class="btlc"><div class="hd"><span class="bn">4</span><h3>다음 성장 시장</h3></div>
-        <div class="easy">"4050의 질환 니즈는 아직 빈 공간"</div>
-        <p>구매력 큰 4050을 건강가치로 재정의한 <b class="k">케어푸드 버티컬</b>로 TAM 확장.</p>
-        <span class="m">▶ 전략 ④</span></div>
-    </div>
-    <p class="take" style="margin-top:16px;">핵심은 <span class="hi">"산지·4050이라는 태생적 강점을, 효율 채널·리텐션·신시장으로 레버리지"</span>하는 것.</p>
-  </div>
-  <div class="pageno">07 / 15</div>
-</section>
-
-<!-- 8 전략1 산지 숏폼 + 매체 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step active"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">전략 1/4</span>
-  </div>
-  <div class="lede">전략 ① ｜ 과제: 신규 획득 효율</div>
-  <h1 class="stitle">스튜디오 광고가 아니라 <span class="i">'산지 리얼리티 숏폼'</span> — 이미 증명됐다</h1>
-  <div class="body">
-    <div class="row" style="align-items:stretch;">
-      <div class="col" style="flex:1.25;">
-        <div class="strathead"><span class="b">검증된 사례</span><span class="t">팔도감 <b>토스애즈 숏폼</b> — 신규 CPO를 목표 대비 <b>47% 절감</b>, 전환의 <b>49%가 신규</b></span></div>
-        <div class="stats" style="margin-bottom:11px;">
-          <div class="stat" style="background:var(--green-bg);"><div class="big r">-47<span class="u">%</span></div><div class="num-l">목표 대비 신규 CPO</div></div>
-          <div class="stat" style="background:var(--green-bg);"><div class="big">49<span class="u">%</span></div><div class="num-l">전환 중 신규 고객</div></div>
-          <div class="stat" style="background:var(--green-bg);"><div class="big">주 3회</div><div class="num-l">소재 교체(피로도 방지)</div></div>
-        </div>
-        <div class="card tint"><h3 style="font-size:13.5px;">공식 = 채널 × 포맷 × 긴박성</h3>
-          <ul class="clean">
-            <li><b class="k">10~20초 숏폼</b> · 3초 안에 할인가 강조</li>
-            <li><b class="k">'1시간만 공개' 타임딜</b>로 노출 자체에 긴박성</li>
-            <li><b class="k">4050 여성</b> 타겟 · 김치·과일·축산·떡 로테이션</li>
-            <li>생산자 실명 + "할인 끝나면 얼마 오른다" 카피</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col" style="flex:1;">
-        <div class="card" style="border:2px solid var(--green);">
-          <h3 style="color:var(--green-d);">📡 매체믹스 로컬라이징</h3>
-          <p style="font-size:12.5px;margin-bottom:9px;">4050은 2030용 'Meta 브랜드 인지' 문법과 달리 <b class="k">직접 클릭·구매</b>한다.</p>
-          <ul class="clean">
-            <li><b class="k">토스</b> — 50대 CTR 70%+·쇼핑 지면</li>
-            <li><b class="k">카카오 비즈보드</b> — 카톡 도달 98.9%(날씨·제철 연동)</li>
-            <li><b class="k">밴드</b> — 4050 지인 커뮤니티 도달</li>
-            <li><b class="k">유튜브</b> — 후기형 영상에 강한 반응</li>
-          </ul>
-          <div class="msg" style="margin-top:10px;">컬리가 비싼 Meta에서 싸울 때, 팔도감은 <b>4050이 실제 사는 곳</b>에서 더 싸게 만난다.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <p class="srcline">출처 · CPO -47%·49% 신규·10~20초·1시간 타임딜·4050 여성: 토스애즈 인사이트(tossads.toss.im/insights/8dogam) / 채널 효율: 토스애즈 오디언스·스트레이트뉴스·카카오비즈니스</p>
-  <div class="pageno">08 / 15</div>
-</section>
-
-<!-- 9 전략2 제철 CRM + 매일농장 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step active"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">전략 2/4</span>
-  </div>
-  <div class="lede">전략 ② ｜ 과제: 재방문·리텐션</div>
-  <h1 class="stitle">컬리의 '정기소진 알림'을 → <span class="i">'제철 캘린더 CRM'</span>으로 상시화</h1>
-  <div class="body">
-    <div class="row" style="align-items:stretch;">
+    <div class="row" style="margin-top:18px; gap:16px; align-items:stretch;">
       <div class="col" style="flex:1.3;">
-        <div class="strathead"><span class="b">벤치마크 → 전개</span><span class="t"><b>컬리</b>는 우유·계란 소진 시점에 알림 → 팔도감은 <b>제철·산지 캘린더</b>로 이걸 상시 이벤트화</span></div>
-        <div class="row" style="gap:12px;">
-          <div class="actcard"><span class="tag i">CRM</span><h3 style="margin-top:7px;">제철 주기 리마케팅</h3>
-            <ul class="clean"><li>품목별 <b class="k">소비주기(7~10일)</b> 산출</li><li>알림톡·푸시를 <b class="k">유료 리타겟과 동기화</b></li></ul></div>
-          <div class="actcard"><span class="tag g">리텐션 엔진</span><h3 style="margin-top:7px;">매일농장 앱테크</h3>
-            <ul class="clean"><li><b class="k">매일농장·매일목장</b>: 키우면 실물 배송</li><li>오늘의퀴즈·건강습관 → <b class="k">매일 켜는 앱</b></li></ul></div>
+        <div style="font-size:14px; font-weight:800; color:var(--gray); margin-bottom:9px;">4050이 실제로 반응하는 지면</div>
+        <div class="chiprow">
+          <span class="chip">📱 토스 <b>· 쇼핑·높은 CTR</b></span>
+          <span class="chip">💬 카카오 비즈보드 <b>· 도달·제철 트리거</b></span>
+          <span class="chip">👥 밴드 <b>· 지인 커뮤니티</b></span>
+          <span class="chip">▶️ 유튜브 <b>· 후기형 영상</b></span>
         </div>
-        <p class="take" style="margin-top:13px;font-size:14.5px;">신선식품의 약점인 <span class="hi">'재방문 습관화'</span>를, 이미 가진 자산(제철·앱테크)으로 정면 공략.</p>
       </div>
-      <div class="col" style="flex:1;">
+      <div class="col insight" style="flex:1;"><span class="ic">🧭</span><p>라포랩스 철학 — <b>"4050도 프로세스는 2030과 같다. 콘텐츠·타겟팅만 정교하게."</b> 큰 글씨·후기형 영상, 오가닉(입소문) 우위.</p></div>
+    </div>
+    <div class="srcnote"><b>출처</b> · 토스애즈 오디언스 리포트·스트레이트뉴스 / 카카오 비즈니스 / AB180 라포랩스 인터뷰</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Why 채널</span></div>
+  </section>
+
+  <!-- 7. ENGINE 산지 숏폼 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">The Engine · 검증된 획득 공식</span>
+      <h2>스튜디오 광고가 아니라 '산지 리얼리티 숏폼'</h2></div>
+    <div class="row" style="align-items:stretch; gap:16px;">
+      <div class="statcard"><div class="n">−47<span class="u">%</span></div><div class="l"><b>목표 대비 신규 CPO</b> (토스애즈 실측)</div></div>
+      <div class="statcard"><div class="n">49<span class="u">%</span></div><div class="l"><b>전환 중 신규 고객</b> — 리타겟 아닌 진짜 신규</div></div>
+      <div class="statcard"><div class="n">주 3<span class="u">회</span></div><div class="l"><b>소재 교체</b>로 피로도 통제</div></div>
+    </div>
+    <div class="row" style="margin-top:18px; gap:16px; align-items:stretch;">
+      <div class="col card" style="flex:1.3;">
+        <h3 style="margin-bottom:10px;">공식 = 채널 × 포맷 × 긴박성</h3>
+        <ul class="clean">
+          <li><b>10~20초 숏폼</b> · 3초 안에 할인가 노출</li>
+          <li><b>'1시간만 공개' 타임딜</b>로 노출 자체에 긴박성</li>
+          <li><b>4050 여성</b> 타겟 · 김치·과일·축산·떡 로테이션</li>
+          <li>생산자 실명 + "할인 끝나면 얼마 오른다" 카피</li>
+        </ul>
+      </div>
+      <div class="col insight" style="flex:1;"><span class="ic">🎬</span><p>컬리가 비싼 Meta에서 '할인율'로 싸울 때, 팔도감은 <b class="hl">4050이 실제 사는 곳에서 '산지 진정성'으로</b> 같은 전환을 더 싸게 만든다.</p></div>
+    </div>
+    <div class="srcnote"><b>출처</b> · 토스애즈 인사이트 「산지 숏폼+타임딜로 CPO 47%↓」(tossads.toss.im/insights/8dogam)</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Engine</span></div>
+  </section>
+
+  <!-- 8. TEST & LEARN (핵심 운영 ethos) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Test &amp; Learn · 빠르게 시도, 빠르게 레슨런</span>
+      <h2>'많이' 쓰지 않습니다 — '되는 곳에 단계적으로' 씁니다</h2></div>
+    <div class="flow" style="margin-top:2px;">
+      <div class="flowstep"><div class="stg">① 가설</div><h3>소재 가설</h3><p>산지 숏폼을 생산자·타임딜·후기·레시피 앵글로 변주</p></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep"><div class="stg">② 테스트</div><h3>주 단위 A/B</h3><p>한 번에 하나씩 — 훅·썸네일·CTA 변수 통제</p></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep"><div class="stg">③ 측정</div><h3>Airbridge</h3><p>채널별 CPO·신규비중. 라스트터치 한계는 증분으로 보정</p></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep scale"><div class="stg" style="color:var(--green)">④ 스케일</div><h3>되면 +20%</h3><p>목표 CPO·D7 재구매 검증 시 단계 증액</p></div>
+      <div class="flowarr">/</div>
+      <div class="flowstep kill"><div class="stg">④ 킬</div><h3>안 되면 즉시</h3><p>미달 소재·지면은 빠르게 종료</p></div>
+    </div>
+    <div class="row" style="margin-top:18px; gap:16px; align-items:stretch;">
+      <div class="col insight"><span class="ic">📐</span><p>판단 기준은 클릭·CTR이 아니라 <b class="hl">신규 CPO ÷ D7 재구매율</b>. <b>LTV : CAC ≥ 3</b> 넘는 세그먼트만 증액, 홀드아웃·증분으로 '진짜 기여' 검증.</p></div>
+      <div class="col insight"><span class="ic">⚡</span><p><b>속도가 곧 효율</b> — 큰 베팅 한 번보다, 작게 여러 번 빠르게 배운다. 신선식품 단위경제(CAC 회수)를 지키는 운영 방식.</p></div>
+    </div>
+    <div class="srcnote"><b>※</b> 라포랩스 실제 스택(Airbridge·자체 DB·Braze, 캠페인당 자율 집행)과 정합되는 운영 — AB180 인터뷰 기준</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Test &amp; Learn</span></div>
+  </section>
+
+  <!-- 9. BENCHMARK + EDGE (컬리에게 배우고 다르게 싸운다) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Benchmark &amp; Edge · 배우되, 다르게 싸운다</span>
+      <h2>컬리가 10년에 걸쳐 만든 락인을, 더 싸게 복제한다</h2></div>
+    <div class="flow" style="margin-top:2px;">
+      <div class="flowstep"><div class="stg">STEP 1 · 인지</div><h3>전지현 × 보라색</h3><p>단일 컬러·톱모델로 인지도 41%→70%</p><span style="display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;color:var(--gray);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 8px;">→ 산지·생산자 자산화</span></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep"><div class="stg">STEP 2 · 가입</div><h3>"적립금 ≥ 회비"</h3><p>13개월에 멤버스 100만 가입</p><span style="display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;color:var(--gray);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 8px;">→ 가입장벽 0</span></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep"><div class="stg">STEP 3 · 락인</div><h3>등급제·CRM</h3><p>재구매율 76.5%, 멤버십이 매출 50%</p><span style="display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;color:var(--gray);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 8px;">→ 제철 CRM·앱테크</span></div>
+      <div class="flowarr">→</div>
+      <div class="flowstep scale"><div class="stg" style="color:var(--green)">STEP 4 · 효율</div><h3>광고비 사이클</h3><p>흑자 직전 광고비 −39%, 후 재투자</p><span style="display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;color:var(--green-d);background:#fff;border:1px solid var(--green-border);border-radius:6px;padding:3px 8px;">→ ROAS 운영</span></div>
+    </div>
+    <div class="insight" style="margin-top:20px;"><span class="ic">🛡️</span><p>컬리가 후천적으로 만든 '기능가치(신선·산지)'를 팔도감은 <b>태생적으로 보유</b>. 같은 락인을 <b class="hl">더 낮은 CAC로, Meta가 아닌 4050 채널에서</b> 복제한다.</p></div>
+    <div class="srcnote"><b>출처</b> · 컬리: 브랜드브리프·서울경제·비즈니스포스트·데일리한국(재구매율 76.5%, 2022.4)·패션비즈</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Benchmark &amp; Edge</span></div>
+  </section>
+
+  <!-- 10. RETENTION 제철 CRM + 매일농장 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Retention · 한 번 산 고객을 다시 부른다</span>
+      <h2>제철 캘린더 CRM × 매일농장 — 재방문을 습관으로</h2></div>
+    <div class="row" style="align-items:stretch; gap:18px;">
+      <div class="col" style="flex:1.05;">
         <div class="mock">
-          <div class="mh">🔔 제철 알림톡 (D+7 리타겟 연동)</div>
-          <div class="ms">성주 참외 구매 → 7일 뒤 자동 발송</div>
+          <div class="mh">🔔 제철 알림톡 — 성주 참외 구매 D+7 자동 발송</div>
           <div class="chatb sys">지난주 구매하신 <b>성주 참외</b>는 달았나요? 😊</div>
-          <div class="chatb sys">지금 딱 3일만 수확하는 <b>초당옥수수</b>가 나왔어요. 끝나면 2,000원 오릅니다!</div>
+          <div class="chatb sys">지금 딱 3일만 수확하는 <b>초당옥수수</b>가 나왔어요. 끝나면 2,000원 올라요!</div>
           <div class="chatb me">오 마침 떨어졌는데!</div>
-          <div class="relief">제철 끝나기 전 재구매 전환 ✓</div>
-          <div class="mockbtn">초당옥수수 보러가기 · 오늘만 이 가격</div>
-        </div>
-        <p class="src" style="text-align:center;margin-top:7px;">▲ 제안 목업 — 제철 주기 CRM</p>
-      </div>
-    </div>
-  </div>
-  <p class="srcline">출처 · 컬리 정기소진 알림·CRM: 에픽 CRM 인사이트 / 매일농장·매일목장·오늘의퀴즈·건강습관: 브런치 팔도감 서비스 분석</p>
-  <div class="pageno">09 / 15</div>
-</section>
-
-<!-- 10 전략3 락인 멤버십 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step active"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">전략 3/4</span>
-  </div>
-  <div class="lede">전략 ③ ｜ 과제: 객단가·LTV (할인 의존 탈피)</div>
-  <h1 class="stitle">단발 할인 대신 → <span class="i">'적립금 ≥ 회비' 락인 멤버십</span></h1>
-  <div class="body">
-    <div class="strathead"><span class="b">벤치마크 → 전개</span><span class="t"><b>컬리멤버스</b>는 회비(1,900원)보다 큰 적립(2,000원)으로 가입장벽을 0으로 만들어 <b>매출 50%·재구독 97%</b>를 락인 — 팔도감판으로 이식</span></div>
-    <div class="row">
-      <div class="actcard"><span class="tag i">가입장벽 0</span><h3 style="margin-top:7px;">팔도감 멤버스</h3>
-        <p style="font-size:12.5px;">월 회비 즉시 적립 환급 + 무료배송·제철 쿠폰팩. "가입 안 하면 손해" 구조.</p></div>
-      <div class="actcard"><span class="tag g">앱테크 연계</span><h3 style="margin-top:7px;">매일농장 × 멤버십</h3>
-        <p style="font-size:12.5px;">출석·미션 적립을 멤버십 등급으로 환산 → 이미 매일 켜는 유저를 유료로 전환.</p></div>
-      <div class="actcard"><span class="tag a">데이터 PB</span><h3 style="margin-top:7px;">제철 정기구독</h3>
-        <p style="font-size:12.5px;">쌀·잡곡·시즌채소 '원물 정기배송' — 완제품 구독(그리팅) 대비 신선·저단가.</p></div>
-    </div>
-    <p class="take" style="margin-top:16px;">컬리가 <span class="hir">'할인쿠폰 → 멤버십'</span>으로 락인했듯, 팔도감은 <span class="hi">'산지·앱테크 → 멤버십'</span>으로 더 끈끈하게 묶는다.</p>
-  </div>
-  <p class="srcline">출처 · 컬리멤버스(월1,900원·적립2,000원·재구독97%·매출비중50%·전환6배): 서울경제·비즈니스포스트 / '원물 vs 완제품' 대비: 그리팅 정기식단 공식몰</p>
-  <div class="pageno">10 / 15</div>
-</section>
-
-<!-- 11 전략4 케어푸드 근거+기획 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step active"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">전략 4/4</span>
-  </div>
-  <div class="lede">전략 ④ ｜ 신규 오디언스·소재 앵글 확장 (4050 케어푸드)</div>
-  <h1 class="stitle">새 타겟·새 소재·<span class="i">저경쟁 키워드</span>를 여는 <span class="i">'안심 원물'</span></h1>
-  <div class="body">
-    <div class="row" style="margin-bottom:13px;">
-      <div class="stat" style="text-align:left;flex:1;"><div class="big a">36.8<span class="u">%</span></div><div class="num-l">남성 50대 대사증후군 유병률 (40대 30.6%)</div></div>
-      <div class="stat" style="text-align:left;flex:1;"><div class="big a">2배</div><div class="num-l">여성 대사증후군 40대 12%→50대 25%</div></div>
-      <div class="stat" style="text-align:left;flex:1;"><div class="big a">61<span class="u">만</span></div><div class="num-l">자궁근종 진료('22)·40·50대가 2/3</div></div>
-    </div>
-    <div class="row" style="gap:12px;">
-      <div class="pcard"><div class="ph">🩸 혈당 스파이크 방지족</div><div class="pb"><div class="pain">"과일은 먹고 싶은데 당뇨 올까 무서워요"</div><div class="match"><b>저당·저GI</b> — 스테비아 토마토·산지 사과, 백미 대체 고대미(카무트·귀리)</div></div></div>
-      <div class="pcard"><div class="ph">🌸 갱년기·호르몬군</div><div class="pb"><div class="pain">"열이 오르고 골다공증이 걱정돼요"</div><div class="match"><b>에스트로겐·칼슘</b> — 석류·칡·콩류, 자연산 미역·톳·고칼슘 수산물</div></div></div>
-      <div class="pcard"><div class="ph">❤️ 혈관·염증 관리족</div><div class="pb"><div class="pain">"기름진 건 피해야 하는데 반찬이 없어요"</div><div class="match"><b>불포화·저염</b> — 저온압착 들기름, 칼륨 채소(시금치·아보카도) 구독</div></div></div>
-    </div>
-    <p class="take" style="margin-top:14px;">퍼포먼스 관점에선 <span class="hi">새 타겟군 = 새 오디언스·새 소재 앵글</span> — "당뇨 걱정 엄마" 후기형 소재와 <span class="hi">'당뇨 과일·저당' 저경쟁 검색 키워드</span>를 선점한다.</p>
-  </div>
-  <p class="srcline">출처 · 대사증후군(국민건강영양조사): SBS·메디게이트 / 자궁근종('22 61만·40·50대): 건강보험심사평가원·ZDNet / 질환별 식이가이드 기반 큐레이션 설계</p>
-  <div class="pageno">11 / 15</div>
-</section>
-
-<!-- 12 케어푸드 경쟁사 빈틈 + 차별화 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step active"><span class="n">3</span>전략</span><span class="sep"></span>
-      <span class="step"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">전략 4/4 · 경쟁 빈틈</span>
-  </div>
-  <div class="lede">전략 ④ ｜ 경쟁사는 '완제품'을 판다 — 빈틈은 '원물'</div>
-  <h1 class="stitle">대기업이 <span class="r">공장 식단</span>을 팔 때, 팔도감은 <span class="i">신선 원물</span>로 가볍게</h1>
-  <div class="body">
-    <div class="row" style="align-items:stretch;">
-      <div class="col" style="flex:1.15;">
-        <table class="cmp" style="font-size:12.5px;">
-          <thead><tr><th>경쟁사</th><th>한계 = 팔도감 기회</th></tr></thead>
-          <tbody>
-            <tr><td class="rl" style="width:140px;">그리팅<br><span style="font-weight:600;color:var(--faint);font-size:11px;">(현대그린푸드)</span></td><td>한 끼 <b>8,500원</b>·481→650종 SKU 비대·메시지 분산(MZ+시니어)</td></tr>
-            <tr><td class="rl">디자인밀<br><span style="font-weight:600;color:var(--faint);font-size:11px;">(풀무원)</span></td><td>전 생애주기 과확장·<b>NDP 27만원</b> 고가·CGM 등 무거운 UX</td></tr>
-            <tr><td class="rl">잇마플</td><td>신장·당뇨 환자식 → 모수 좁아 <b>B2B·오뚜기 의존</b>, 낮은 대중인지</td></tr>
-            <tr><td class="rl">닥터키친</td><td>밀키트 <b>원가율 81%</b>·좁은 시장 → 프레시지 인수 후 <b>'23 합병·폐업</b></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col" style="flex:1;">
-        <div class="card tint" style="height:100%;">
-          <h3>🌱 팔도감만의 차별화 3축</h3>
-          <ul class="clean">
-            <li><b class="k">상품</b> — HMR 도시락 ❌ → "밥물만 바꿔도" <b class="k">안심 원물 큐레이션</b></li>
-            <li><b class="k">인증</b> — 차가운 메디컬 ❌ → <b class="k">산지 장인 + 데이터 성적표</b>(잔류농약 0%·저당품종)</li>
-            <li><b class="k">커뮤니티</b> — 매일농장 자산으로 <b class="k">[혈당 동호회]·[갱년기 모임]</b> → CAC 없이 락인</li>
-          </ul>
+          <div class="relief">제철 끝나기 전 재구매 전환 ✓ (리타겟 오디언스와 동기화)</div>
         </div>
       </div>
-    </div>
-    <p class="take" style="margin-top:14px;">닥터키친의 적자가 증명한다 — <span class="hir">완제품 단독은 원가율로 무너진다.</span> 팔도감은 <span class="hi">공장 없이 산지 인프라로 가볍게</span> 선점한다.</p>
-  </div>
-  <p class="srcline">출처 · 그리팅(한끼 8,500원·481→650종·+18%): 머니투데이·아시아경제 / 디자인밀 NDP 27만원: 풀무원 뉴스룸 / 잇마플·오뚜기: 오뚜기 보도자료 / 닥터키친(원가율 81%·합병): 전자신문·아시아경제·THE VC</p>
-  <div class="pageno">12 / 15</div>
-</section>
-
-<!-- 13 실행1 퍼포먼스 운영 시스템 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>전략</span><span class="sep"></span>
-      <span class="step active"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">퍼포먼스 운영</span>
-  </div>
-  <div class="lede">실행 ① ｜ 제가 입사 후 굴릴 퍼포먼스 운영 시스템</div>
-  <h1 class="stitle">소재 → 측정 → 스케일, <span class="i">주 단위로 도는 퍼포먼스 루프</span></h1>
-  <div class="body">
-    <div class="btl">
-      <div class="btlc"><div class="hd"><span class="bn">1</span><h3>소재 가설</h3></div><p>산지 숏폼을 <b class="k">생산자·타임딜·후기·레시피</b> 앵글로 변주. 3초 훅에 할인가 노출.</p></div>
-      <div class="btlc"><div class="hd"><span class="bn">2</span><h3>테스트</h3></div><p><b class="k">주 3회 소재 교체</b> + '1시간 타임딜' A/B. 훅·썸네일·CTA를 변수 통제로.</p></div>
-      <div class="btlc"><div class="hd"><span class="bn">3</span><h3>측정</h3></div><p><b class="k">Airbridge 어트리뷰션</b> + 채널별 CPO·신규비중. 라스트터치 한계는 증분으로 보정.</p></div>
-      <div class="btlc"><div class="hd"><span class="bn">4</span><h3>스케일 / 킬</h3></div><p>목표 CPO·D7재구매 검증 시 <b class="k">예산 +20% 단계 증액</b>, 미달 소재는 즉시 킬.</p></div>
-    </div>
-    <div class="row" style="margin-top:13px;align-items:stretch;">
-      <div class="col" style="flex:1.12;">
-        <table class="cmp" style="font-size:12px;">
-          <thead><tr><th>채널</th><th>역할</th><th>주 KPI</th></tr></thead>
-          <tbody>
-            <tr><td class="rl" style="width:104px;">토스 숏폼</td><td>신규 획득 핵심 (4050)</td><td class="pal"><b>신규 CPO</b></td></tr>
-            <tr><td class="rl">카카오 비즈보드</td><td>도달·날씨/제철 트리거</td><td>CPC·도달단가</td></tr>
-            <tr><td class="rl">밴드·유튜브</td><td>지인·후기형 신뢰</td><td>전환율·시청완료</td></tr>
-            <tr><td class="rl">Meta</td><td>리타게팅만 (신규는 레드오션)</td><td>ROAS</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col" style="flex:1;">
-        <div class="card tint" style="height:100%;">
-          <h3>📐 의사결정 가드레일</h3>
-          <ul class="clean">
-            <li>판단 기준은 클릭·CTR이 아니라 <b class="k">신규 CPO ÷ D7 재구매율</b></li>
-            <li><b class="k">LTV : CAC ≥ 3</b> 넘는 세그먼트만 증액</li>
-            <li>홀드아웃·증분 테스트로 <b class="k">'진짜 신규 기여'</b> 검증 후 스케일</li>
-          </ul>
-        </div>
+      <div class="col" style="flex:1; display:flex; flex-direction:column; gap:13px;">
+        <div class="card"><div class="num">컬리에게서 배움</div><h3>정기소진 알림 → 제철 상시화</h3><p style="margin-top:7px;">컬리는 우유·계란 소진 시점에 알림. 팔도감은 <b>제철·산지 캘린더</b>로 이걸 상시 이벤트화.</p></div>
+        <div class="card green"><div class="num">팔도감 고유 자산</div><h3>매일농장 = 리텐션 엔진</h3><p style="margin-top:7px;">작물 키우면 실물 배송, 오늘의퀴즈·건강습관 → <b>4050이 매일 켜는 앱</b>. 신선식품의 약점(재방문)을 정면 공략.</p></div>
       </div>
     </div>
-    <p class="take" style="margin-top:13px;">광고비를 '많이'가 아니라 <span class="hi">'증분이 검증된 곳에 단계적으로'</span> — 신선식품 단위경제(CAC 회수)를 지키는 운영.</p>
-  </div>
-  <p class="srcline">※ 라포랩스 실제 마케팅 스택(Airbridge 어트리뷰션·자체 DB·Braze CRM, 캠페인당 자율 집행)과 정합되는 운영 방식 — AB180 라포랩스 인터뷰 기준</p>
-  <div class="pageno"></div>
-</section>
+    <div class="srcnote"><b>출처</b> · 컬리 CRM: 에픽 CRM 인사이트 / 매일농장·매일목장: 브런치 팔도감 서비스 분석</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Retention</span></div>
+  </section>
 
-<!-- 14 실행 로드맵 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>전략</span><span class="sep"></span>
-      <span class="step active"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">실행</span>
-  </div>
-  <div class="lede">실행 ② ｜ 우선순위 & 로드맵</div>
-  <h1 class="stitle">보유 자산으로 <span class="i">당장 되는 것</span>부터 — 린(Lean)하게</h1>
-  <div class="body">
-    <div class="phase">
-      <div class="pc p1"><span class="pn">0–3개월 · Quick Win</span><h3>효율 채널 + 제철 CRM</h3>
-        <ul><li>토스·카카오·밴드 산지 숏폼 확대</li><li>제철 주기 알림톡(보유 데이터, 추가비용 0)</li><li>매일농장 리텐션 미션 강화</li></ul></div>
-      <div class="arr2">→</div>
-      <div class="pc p2"><span class="pn">3–6개월 · 구조 전환</span><h3>락인 멤버십 + MVP</h3>
-        <ul><li>'적립금≥회비' 팔도감 멤버스 런칭</li><li>케어푸드 베스트 5종 기획전 MVP</li><li>50대+ 알림톡 → CVR·단가 측정</li></ul></div>
-      <div class="arr2">→</div>
-      <div class="pc p3"><span class="pn">6–12개월 · 확장</span><h3>케어푸드 버티컬 + 커뮤니티</h3>
-        <ul><li>안심 독점계약·원물 정기구독</li><li>인증 성적표 + 건강 커뮤니티</li><li>유저가 유저를 부르는 그로스 루프</li></ul></div>
+  <!-- 11. EXPANSION 케어푸드 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Expansion · 새 오디언스를 연다</span>
+      <h2>4050 케어푸드 = 새 타겟 · 새 소재 앵글 · 저경쟁 키워드</h2></div>
+    <div class="row" style="align-items:stretch; gap:16px;">
+      <div class="statcard"><div class="n">36.8<span class="u">%</span></div><div class="l"><b>남성 50대 대사증후군</b> 유병률 (40대 30.6%)</div></div>
+      <div class="statcard"><div class="n">2<span class="u">배</span></div><div class="l"><b>여성 대사증후군</b> 40대 12%→50대 25%</div></div>
+      <div class="statcard"><div class="n">3<span class="u">조원</span></div><div class="l"><b>케어푸드 시장</b> ('25 전망) · 초고령 진입</div></div>
     </div>
-    <p class="take" style="margin-top:20px;">우선순위 원칙 — <span class="hi">① 추가 투자 없이 보유 자산(제철 데이터·매일농장)으로 즉시 ROI</span>, 그 현금흐름으로 멤버십·신시장에 재투자.</p>
-  </div>
-  <div class="pageno">13 / 15</div>
-</section>
-
-<!-- 14 KPI -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>전략</span><span class="sep"></span>
-      <span class="step active"><span class="n">4</span>실행</span>
-    </div><span class="brandtag">실행</span>
-  </div>
-  <div class="lede">실행 ③ ｜ KPI 대시보드</div>
-  <h1 class="stitle">무엇을 보고 <span class="i">성공을 판단</span>할 것인가</h1>
-  <div class="body">
-    <table class="kpi">
-      <tr><th>전략</th><th>핵심 측정 지표 (KPIs)</th><th>의미</th></tr>
-      <tr><td>① 산지 숏폼·매체</td><td>채널별 신규 CPO · 전환 중 신규 비중 · ROAS</td><td>획득 효율</td></tr>
-      <tr><td>② 제철 CRM·앱테크</td><td>D+7 재구매율 · 알림톡 전환율 · 매일농장 DAU</td><td>리텐션</td></tr>
-      <tr><td>③ 락인 멤버십</td><td>멤버십 가입률 · 재구독률 · 멤버십 매출 비중</td><td>LTV·락인</td></tr>
-      <tr><td>④ 케어푸드</td><td>기획전 CVR · 객단가 변화 · 원물 구독 유지율</td><td>신TAM·마진</td></tr>
-    </table>
-    <p class="take" style="margin-top:18px;">한 지표만 꼽자면 <span class="hi">'신규 CPO ÷ D+7 재구매율'</span> — 싸게 데려와 오래 남기는, 신선식품 단위경제의 핵심.</p>
-    <p class="note">※ 목표 수치는 베이스라인 측정 후 확정. 컬리(재구매율 76.5%)·팔도감(CPO -47%)를 벤치마크 기준선으로 활용.</p>
-  </div>
-  <div class="pageno">14 / 15</div>
-</section>
-
-<!-- 15 마무리 -->
-<section class="slide">
-  <div class="topbar">
-    <div class="stepper">
-      <span class="step done"><span class="n">✓</span>현황</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>진단</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>전략</span><span class="sep"></span>
-      <span class="step done"><span class="n">✓</span>실행</span>
-    </div><span class="brandtag">맺음말</span>
-  </div>
-  <div class="lede">맺음말 ｜ 기대효과 & 핵심 메시지</div>
-  <h1 class="stitle">제가 드리는 한 가지 메시지</h1>
-  <div class="body">
-    <div class="card" style="background:radial-gradient(120% 140% at 82% 0%,#0c5a20,#06310f);border:none;text-align:center;padding:24px;">
-      <p style="color:#fff;font-size:22px;font-weight:800;line-height:1.5;">컬리가 <b style="color:#ff9bb0;">할인으로 트래픽을 사는</b> 동안,<br>팔도감은 <span style="background:linear-gradient(90deg,#a9f7c0,#7fe89c,#e8f7a0);-webkit-background-clip:text;background-clip:text;color:transparent;">산지·제철·4050으로 '관계'를 산다.</span></p>
-      <p style="color:#9fd6ad;font-size:13.5px;margin-top:11px;">그 무기는 컬리가 못 가진 <b style="color:#fff;">산지직송 × 통째로 모인 4050 오디언스</b>입니다.</p>
+    <div class="row" style="margin-top:16px; gap:16px; align-items:stretch;">
+      <div class="col card" style="flex:1.15;">
+        <h3 style="margin-bottom:9px;">경쟁사 빈틈 = 팔도감 기회</h3>
+        <ul class="clean">
+          <li><b>닥터키친</b> 밀키트 원가율 81% → '23 폐업 · <b>완제품 단독은 무너진다</b></li>
+          <li><b>그리팅</b> 한 끼 8,500원·481→650종 SKU 비대·메시지 분산</li>
+          <li>→ 팔도감은 <b>공장 없이 '산지 안심 원물'</b>로 가볍게 선점</li>
+        </ul>
+      </div>
+      <div class="col insight" style="flex:1;"><span class="ic">🎯</span><p>퍼포먼스 관점 — <b>새 타겟군 = 새 오디언스·새 소재 앵글.</b> "당뇨 걱정 엄마" 후기형 소재 + <b class="hl">'당뇨 과일·저당' 저경쟁 검색 키워드</b>를 선점한다.</p></div>
     </div>
-    <p style="font-size:12px;font-weight:800;color:var(--gray);margin:16px 0 9px;text-align:center;">기대효과 (12개월 방향성 · A/B로 검증)</p>
-    <div class="impact">
-      <div class="ic"><div class="iv">CPO <span style="color:var(--green-l)">↓</span></div><div class="il">신규 획득 비용</div><div class="ib">산지 숏폼·매체 로컬라이징</div></div>
-      <div class="ic"><div class="iv">재구매 <span class="ar">↑</span></div><div class="il">D+7 재방문·리텐션</div><div class="ib">제철 CRM·매일농장</div></div>
-      <div class="ic"><div class="iv">LTV <span class="ar">↑</span></div><div class="il">고객 생애가치</div><div class="ib">적립금≥회비 멤버십</div></div>
-      <div class="ic"><div class="iv">객단가 <span class="ar">↑</span></div><div class="il">신규 TAM·마진</div><div class="ib">4050 케어푸드</div></div>
-    </div>
-    <p class="take" style="text-align:center;margin-top:16px;">'한 번 팔고 끝'이 아니라 — <span class="hi">통째로 소유한 4050의 평생 밥상을 운영합니다.</span></p>
-  </div>
-  <div class="pageno">15 / 15</div>
-</section>
+    <div class="srcnote"><b>출처</b> · 대사증후군(국민건강영양조사): SBS / 케어푸드 3조: 삼정KPMG / 닥터키친·그리팅: 전자신문·아시아경제·머니투데이</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Expansion</span></div>
+  </section>
 
-</div>
+  <!-- 12. CLOSING -->
+  <section class="slide cover" style="justify-content:center;">
+    <div class="glow"></div><div class="glow2"></div>
+    <span class="kicker" style="color:#46d873">Next Step · 기대효과</span>
+    <h1 style="color:#fff; margin-top:14px; font-size:50px;">할인이 아니라 산지로,<br><span class="bigorange">'한 번 팔고 끝'이 아니라 평생 밥상으로.</span></h1>
+    <p class="sub" style="color:#cfd6d0; margin-top:24px; max-width:980px;">팔도감의 무기(산지·4050·앱테크)를 <b style="color:#fff;">획득 → 재구매 → LTV → 신규 오디언스</b>의 퍼포먼스 루프로 돌리겠습니다.<br>그리고 그 모든 걸 <b style="color:#46d873;">빠르게 시도하고 빠르게 배우며</b> — 되는 것만 키우겠습니다.</p>
+    <div style="margin-top:30px; display:flex; gap:11px; flex-wrap:wrap;">
+      <span class="tag" style="border-color:var(--green); color:#fff;">CPO ↓ 신규 획득비</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">재구매 ↑ D+7 리텐션</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">LTV ↑ 멤버십·앱테크</span>
+      <span class="tag" style="border-color:var(--green); color:#fff;">객단가 ↑ 케어푸드</span>
+    </div>
+    <div class="wordmark" style="margin-top:46px; font-size:21px; color:#fff;"><span class="mk" style="background:#fff;color:var(--green-d);border-radius:8px;padding:2px 10px;">팔도감</span> <span style="color:#7a857d; font-weight:600;">Performance Growth · 이도형</span></div>
+  </section>
+
+</div></div>
+
+<div id="counter"></div>
+<div id="hint">← → 이동 · F 전체화면 · P 인쇄(PDF)</div>
+<div class="navzone" id="prevZone"></div>
+<div class="navzone" id="nextZone"></div>
+
 <script>
-  // 슬라이드 추가/삭제와 무관하게 페이지 번호 자동 부여 (표지는 번호 없음)
-  (function(){
-    var sl=[].slice.call(document.querySelectorAll('.slide'));
-    var t=sl.length;
-    sl.forEach(function(s,i){
-      var p=s.querySelector('.pageno');
-      if(p) p.textContent=String(i+1).padStart(2,'0')+' / '+t;
-    });
-  })();
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const counter=document.getElementById('counter'), progress=document.getElementById('progress');
+  function render(){ slides.forEach((s,n)=>s.classList.toggle('active',n===i));
+    counter.textContent=(i+1)+' / '+slides.length; progress.style.width=((i)/(slides.length-1)*100)+'%'; }
+  function go(d){ i=Math.max(0,Math.min(slides.length-1,i+d)); render(); }
+  function fit(){ const k=Math.min(innerWidth/1280,innerHeight/720); document.getElementById('scaler').style.transform='scale('+k+')'; }
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+    else if(e.key==='Home'){i=0;render();} else if(e.key==='End'){i=slides.length-1;render();}
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+    else if(e.key.toLowerCase()==='p'){window.print();}
+  });
+  document.getElementById('nextZone').onclick=()=>go(1);
+  document.getElementById('prevZone').onclick=()=>go(-1);
+  addEventListener('resize',fit); fit(); render();
 </script>
 </body>
 </html>
