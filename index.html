@@ -104,6 +104,14 @@
   .refcard .tt span{color:var(--green);} .refcard .tt span.r{color:var(--red);}
   .refcard .cap{padding:0 15px 13px; font-size:13px; color:var(--ink2); line-height:1.45;}
 
+  .bars{display:flex; align-items:flex-end; gap:11px; height:142px; margin-top:12px; padding:0 2px;}
+  .bars .bar{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;}
+  .bars .bar .v{font-size:12px; font-weight:800; color:var(--gray2); margin-bottom:5px;}
+  .bars .bar .b{width:100%; border-radius:5px 5px 0 0; background:#c6cdc7; min-height:3px;}
+  .bars .bar.on .b{background:var(--green);} .bars .bar.on .v{color:var(--green-d);}
+  .bars.gray .bar.pk .b{background:#9aa39c;} .bars.gray .bar.pk .v{color:var(--gray);}
+  .bars .bar .x{font-size:11.5px; color:var(--gray); margin-top:6px; font-weight:600;}
+  .chcap{font-size:13.5px; color:var(--ink2); margin-top:1px;} .chcap b{color:var(--ink);}
   table{width:100%; border-collapse:collapse; font-size:15px;}
   th,td{text-align:left; padding:12px 15px; border-bottom:1px solid var(--line); vertical-align:top;}
   thead th{background:var(--ink); color:#fff; font-weight:700; font-size:14px;}
@@ -348,28 +356,54 @@
     <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Retention</span></div>
   </section>
 
-  <!-- 11. EXPANSION 케어푸드 -->
+  <!-- 11. THE GAP (데모 불일치 + 건강 검색 증거) -->
   <section class="slide">
-    <div class="slide-head"><span class="kicker">Expansion · 새 오디언스를 연다</span>
-      <h2>4050 케어푸드 = 새 타겟 · 새 소재 앵글 · 저경쟁 키워드</h2></div>
-    <div class="row" style="align-items:stretch; gap:16px;">
-      <div class="statcard"><div class="n">36.8<span class="u">%</span></div><div class="l"><b>남성 50대 대사증후군</b> 유병률 (40대 30.6%)</div></div>
-      <div class="statcard"><div class="n">2<span class="u">배</span></div><div class="l"><b>여성 대사증후군</b> 40대 12%→50대 25%</div></div>
-      <div class="statcard"><div class="n">3<span class="u">조원</span></div><div class="l"><b>케어푸드 시장</b> ('25 전망) · 초고령 진입</div></div>
-    </div>
-    <div class="row" style="margin-top:16px; gap:16px; align-items:stretch;">
-      <div class="col card" style="flex:1.15;">
-        <h3 style="margin-bottom:9px;">경쟁사 빈틈 = 팔도감 기회</h3>
-        <ul class="clean">
-          <li><b>닥터키친</b> 밀키트 원가율 81% → '23 폐업 · <b>완제품 단독은 무너진다</b></li>
-          <li><b>그리팅</b> 한 끼 8,500원·481→650종 SKU 비대·메시지 분산</li>
-          <li>→ 팔도감은 <b>공장 없이 '산지 안심 원물'</b>로 가볍게 선점</li>
-        </ul>
+    <div class="slide-head"><span class="kicker">The Gap · 신선을 팔지만, 고객은 건강을 검색한다</span>
+      <h2>'산지직송'은 3040의 언어 — 코어 50대는 '건강'을 찾는다</h2></div>
+    <div class="row" style="flex:1; gap:15px; align-items:stretch;">
+      <div class="col card" style="display:flex; flex-direction:column;">
+        <h3 style="font-size:16.5px;">'산지직송' 검색 = <span style="color:var(--gray)">3040</span></h3>
+        <div class="chcap">30~40대 중심 · 검색 <b>하락세</b>(13k→4k)</div>
+        <div class="bars gray" style="margin-top:auto;">
+          <div class="bar"><span class="v">13</span><div class="b" style="height:20%"></div><span class="x">20대</span></div>
+          <div class="bar pk"><span class="v">32</span><div class="b" style="height:49%"></div><span class="x">30대</span></div>
+          <div class="bar pk"><span class="v">34</span><div class="b" style="height:52%"></div><span class="x">40대</span></div>
+          <div class="bar"><span class="v">19</span><div class="b" style="height:29%"></div><span class="x">50대+</span></div>
+        </div>
       </div>
-      <div class="col insight" style="flex:1;"><span class="ic">🎯</span><p>퍼포먼스 관점 — <b>새 타겟군 = 새 오디언스·새 소재 앵글.</b> "당뇨 걱정 엄마" 후기형 소재 + <b class="hl">'당뇨 과일·저당' 저경쟁 검색 키워드</b>를 선점한다.</p></div>
+      <div class="col card green" style="display:flex; flex-direction:column;">
+        <h3 style="font-size:16.5px;">'팔도감' 검색 = <span style="color:var(--green-d)">50대</span></h3>
+        <div class="chcap">50대 압도 · <b>여성 83%</b>(모바일)</div>
+        <div class="bars" style="margin-top:auto;">
+          <div class="bar"><span class="v">5</span><div class="b" style="height:8%"></div><span class="x">20대</span></div>
+          <div class="bar"><span class="v">9</span><div class="b" style="height:14%"></div><span class="x">30대</span></div>
+          <div class="bar"><span class="v">22</span><div class="b" style="height:34%"></div><span class="x">40대</span></div>
+          <div class="bar on"><span class="v">65</span><div class="b" style="height:100%"></div><span class="x">50대+</span></div>
+        </div>
+      </div>
+      <div class="col refcard" style="flex:1.05;">
+        <div class="imgwrap" style="height:248px;"><img src="images/naver-serp.jpeg" alt="네이버 '50대 여성 음식' 검색 결과 — 갱년기 식단"></div>
+        <div class="tt">'50대 여성 음식' 검색 결과 <span>= 건강식단</span></div>
+        <div class="cap">AI 브리핑부터 "뼈·혈관 건강 영양소로 <b>재정의</b>", 관련질문은 "갱년기 증상 완화" — 그 자리를 <b>건기식 광고</b>가 사고 있다.</div>
+      </div>
     </div>
-    <div class="srcnote"><b>출처</b> · 대사증후군(국민건강영양조사): SBS / 케어푸드 3조: 삼정KPMG / 닥터키친·그리팅: 전자신문·아시아경제·머니투데이</div>
-    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Expansion</span></div>
+    <div class="insight red" style="margin-top:15px;"><span class="ic">⚠️</span><p>팔도감 상세페이지는 <b>'얼마나 신선한가(산지직송)'</b>만 말한다 — 그건 3040의 언어다. 정작 코어 50대 여성은 <b class="hlr">'얼마나 건강한가(갱년기·혈당)'</b>를 검색한다. <b>메시지와 고객이 어긋나 있고, '건강'은 빈자리다.</b></p></div>
+    <div class="srcnote"><b>출처</b> · 네이버 검색광고 키워드도구('산지직송'·'팔도감' 성별·연령, 2026.5) · 네이버 검색 '50대 여성 음식'(2026.6 직접 캡처)</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Gap</span></div>
+  </section>
+
+  <!-- 12. THE MOVE (신선→건강 재정의: 카테고리·메시징·커뮤니티) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">The Move · 신선을 넘어 '건강'으로 재정의</span>
+      <h2>먹고 싶게 만든다 — 산지 원물을 '건강 가치'로 다시 쓴다</h2></div>
+    <div class="row" style="flex:1; align-items:stretch; gap:16px;">
+      <div class="col card"><span class="num">① 카테고리</span><h3>[팔도감 건강처방전]</h3><p style="margin-top:8px;">저당 과일·고대미 / 갱년기 칼슘 수산물 / 혈관 들기름. <b>50대 대사증후군 36.8%</b> — 수요는 이미 검색에 있다.</p></div>
+      <div class="col card green"><span class="num" style="color:var(--green-d)">② 메시징</span><h3>'신선' → '건강'</h3><p style="margin-top:8px;">상세페이지·소재를 <b>"얼마나 신선한가 → 얼마나 건강한가"</b>로. "혈당 부담 낮은 품종·갱년기 칼슘" 라벨+성적표. 공포 아닌 <b>안심소구</b>로 먹고 싶게.</p></div>
+      <div class="col card"><span class="num">③ 커뮤니티</span><h3>매일농장 → 건강 모임</h3><p style="margin-top:8px;"><b>[갱년기 극복 모임]·[혈당 동호회]</b> 챌린지·식단 인증. 같은 페인의 50대가 모여 <b>CAC 없이 락인</b>.</p></div>
+    </div>
+    <div class="insight" style="margin-top:16px;"><span class="ic">🛡️</span><p><b>닥터키친</b>(밀키트 원가율 81%→폐업)이 증명하듯 완제품 단독은 무너진다. 팔도감은 <b>공장 없이 '산지 원물 + 건강 메시지 + 커뮤니티'</b>로 — 이미 검색 수요가 있는 건강식을 <b class="hl">식재료로 받아낸다.</b></p></div>
+    <div class="srcnote"><b>출처</b> · 대사증후군(국민건강영양조사): SBS / 닥터키친 원가율·폐업: 전자신문·아시아경제 / 안심소구 vs 공포소구: 케어푸드 마케팅 분석</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Move</span></div>
   </section>
 
   <!-- 12. CLOSING -->
