@@ -51,6 +51,7 @@
   .cover .glow2{position:absolute; width:380px; height:380px; left:-120px; bottom:-160px;
     background:radial-gradient(circle, rgba(224,50,47,.16), transparent 65%); filter:blur(8px);}
   .cover .coverart{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+  .cover .coverkv{position:absolute; right:68px; top:50%; transform:translateY(-50%); width:436px; border-radius:20px; box-shadow:0 24px 70px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.12); z-index:0;}
   .cover > div:not(.glow):not(.glow2):not(.coverart), .cover > h1, .cover > p, .cover > span{position:relative; z-index:1;}
 
   .row{display:flex; gap:18px;} .col{flex:1; min-width:0;}
@@ -172,6 +173,29 @@
   #hint{position:fixed; left:18px; bottom:14px; z-index:50; font-size:12px; color:#9aa0a6;}
   .navzone{position:fixed; top:0; height:100%; width:13%; z-index:40; cursor:pointer;}
   #prevZone{left:0;} #nextZone{right:0;}
+  /* naver search bar */
+  .nbar{display:flex; align-items:center; gap:8px; padding:8px 11px; background:#fff; border-bottom:1px solid var(--line);}
+  .nbar .nlogo{width:22px; height:22px; border-radius:5px; background:#03c75a; color:#fff; font-weight:900; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .nbar .nq{flex:1; font-size:12.5px; color:var(--ink2); font-weight:600; background:var(--soft2); border-radius:14px; padding:5px 11px;}
+  .nbar .ng{color:#03c75a; font-weight:800; font-size:14px;}
+  /* short-form reel UI */
+  .reel{position:relative; width:208px; height:370px; margin:0 auto; border-radius:20px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.24); background:#000;}
+  .reel>img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .reel .shade{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.30), transparent 28%, transparent 52%, rgba(0,0,0,.74));}
+  .reel .live{position:absolute; top:12px; left:12px; background:var(--red); color:#fff; font-size:10.5px; font-weight:800; padding:4px 9px; border-radius:7px;}
+  .reel .hl2{position:absolute; top:12px; right:12px; background:#fff; color:var(--green-d); font-size:10px; font-weight:800; padding:4px 8px; border-radius:7px;}
+  .reel .acts{position:absolute; right:11px; bottom:104px; display:flex; flex-direction:column; gap:14px; color:#fff; text-align:center; font-size:10.5px; font-weight:700;}
+  .reel .acts .ai{font-size:21px; line-height:1; margin-bottom:2px;}
+  .reel .cap3{position:absolute; left:13px; right:54px; bottom:70px; color:#fff; font-size:12px; font-weight:700; line-height:1.35; text-shadow:0 1px 4px rgba(0,0,0,.6);}
+  .reel .pbar{position:absolute; left:11px; right:11px; bottom:11px; background:rgba(255,255,255,.96); border-radius:12px; padding:8px 10px; display:flex; align-items:center; gap:9px;}
+  .reel .pbar .pt{flex:1; min-width:0;} .reel .pbar .pt b{display:block; font-size:12px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;} .reel .pbar .pt span{font-size:13px; color:var(--green-d); font-weight:800;}
+  .reel .pbar .pbtn{background:var(--green); color:#fff; font-size:12px; font-weight:800; padding:8px 11px; border-radius:9px; white-space:nowrap;}
+  /* dish content post ingredients (오늘의집형) */
+  .ingrow{display:flex; gap:8px; margin-top:10px;}
+  .dishthumb{flex:1; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff;}
+  .dishthumb .di{height:40px; display:flex; align-items:center; justify-content:center; font-size:20px; background:var(--green-soft);}
+  .dishthumb .dl{padding:6px 7px 7px; font-size:10px; color:var(--gray); font-weight:600; line-height:1.25;}
+  .dishthumb .dl b{display:block; color:var(--ink); font-size:11px;}
   @media print{
     body{overflow:visible; background:#fff;} #stage{position:static;}
     #scaler{transform:none!important; box-shadow:none;}
@@ -188,37 +212,11 @@
   <!-- 1. COVER -->
   <section class="slide cover active">
     <div class="glow"></div><div class="glow2"></div>
-    <svg class="coverart" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <!-- 산지 바구니(원형) -->
-      <circle cx="1040" cy="430" r="262" fill="none" stroke="#46d873" stroke-width="2" opacity="0.14"/>
-      <circle cx="1040" cy="430" r="200" fill="#18ab4a" opacity="0.07"/>
-      <!-- 새싹(산지·제철·자람) -->
-      <g opacity="0.5">
-        <path d="M1040 560 C1040 470 1040 425 1040 392" stroke="#46d873" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/>
-        <ellipse cx="1004" cy="418" rx="42" ry="21" fill="#18ab4a" transform="rotate(-32 1004 418)" opacity="0.65"/>
-        <ellipse cx="1078" cy="410" rx="44" ry="22" fill="#46d873" transform="rotate(30 1078 410)" opacity="0.6"/>
-      </g>
-      <!-- 토마토 -->
-      <g opacity="0.5">
-        <circle cx="918" cy="500" r="62" fill="#e0322f" opacity="0.42"/>
-        <path d="M918 444 C926 430 944 428 952 432 C944 446 930 450 918 444 Z" fill="#46d873" opacity="0.7"/>
-      </g>
-      <!-- 잎채소 -->
-      <circle cx="1150" cy="520" r="50" fill="#0a8f33" opacity="0.34"/>
-      <!-- 옥수수/원물 -->
-      <ellipse cx="1075" cy="585" rx="34" ry="62" fill="#46d873" opacity="0.3" transform="rotate(18 1075 585)"/>
-      <!-- 팔도(八道) 8개 점 -->
-      <g fill="#46d873" opacity="0.32">
-        <circle cx="852" cy="150" r="6"/><circle cx="930" cy="116" r="5"/>
-        <circle cx="1008" cy="150" r="4.5"/><circle cx="1086" cy="120" r="6"/>
-        <circle cx="1150" cy="170" r="5"/><circle cx="900" cy="210" r="4"/>
-        <circle cx="1058" cy="206" r="4.5"/><circle cx="1160" cy="250" r="4"/>
-      </g>
-    </svg>
+    <img class="coverkv" src="images/paldogam-logo.jpg" alt="팔도감 브랜드 로고">
     <div class="wordmark"><span class="mk">팔도감</span> 전국팔도 제철먹거리</div>
     <div class="kicker" style="color:#46d873">Performance Growth · 퍼포먼스 마케터 지원</div>
-    <h1 style="margin-top:14px;">산지직송을 넘어,<br><span class="bigorange">'건강하게 먹는 재미'를 판다</span></h1>
-    <p class="sub">팔도감의 코어는 <b style="color:#fff;">50대 여성</b>. 그들이 원하는 건 '신선함'이 아니라 <b style="color:#fff;">'건강하게, 즐겁게 먹는 법'</b>입니다.<br>할인이 아니라 — <b style="color:#fff;">콘텐츠·커뮤니티·숏커머스로 '먹고 싶게'</b> 만들어 <b style="color:#46d873;">구매전환율</b>을 높이겠습니다.</p>
+    <h1 style="margin-top:14px; max-width:680px;">산지직송을 넘어,<br><span class="bigorange">'건강하게 먹는 재미'를 판다</span></h1>
+    <p class="sub" style="max-width:680px;">팔도감의 코어는 <b style="color:#fff;">50대 여성</b>. 그들이 원하는 건 '신선함'이 아니라 <b style="color:#fff;">'건강하게, 즐겁게 먹는 법'</b>입니다.<br>할인이 아니라 — <b style="color:#fff;">콘텐츠·커뮤니티·숏커머스로 '먹고 싶게'</b> 만들어 <b style="color:#46d873;">구매전환율</b>을 높이겠습니다.</p>
     <div style="margin-top:28px; display:flex; gap:11px; flex-wrap:wrap;">
       <span class="tag" style="border-color:var(--green); color:#fff;">🥗 건강하게 먹는 재미</span>
       <span class="tag" style="border-color:var(--green); color:#fff;">📲 콘텐츠·숏 커머스</span>
@@ -276,9 +274,10 @@
         </div>
       </div>
       <div class="col refcard" style="flex:1.05;">
-        <div class="imgwrap" style="height:243px;"><img src="images/naver-serp.jpeg" alt="네이버 '50대 여성 음식' 검색 결과 — 갱년기 식단"></div>
-        <div class="tt">'50대 여성 음식' 검색 <span>= 건강식단</span></div>
-        <div class="cap">AI 브리핑부터 "뼈·혈관 건강 영양소로 <b>재정의</b>", 관련질문은 "갱년기 증상 완화" — 그 자리를 <b>건기식 광고</b>가 사고 있다.</div>
+        <div class="nbar"><span class="nlogo">N</span><span class="nq">50대 여성 음식</span><span class="ng">🔍</span></div>
+        <div class="imgwrap" style="height:210px;"><img src="images/naver-serp.jpeg" alt="네이버 '50대 여성 음식' 검색 결과 — 갱년기 식단"></div>
+        <div class="tt">📍 네이버 <span>실제 검색 결과</span> (2026.6)</div>
+        <div class="cap">'음식'을 검색하면 AI 브리핑이 "뼈·혈관 건강 영양소로 <b>재정의</b>", 관련질문은 "갱년기 증상 완화" — 그 자리를 <b>건기식 광고</b>가 사고 있다.</div>
       </div>
     </div>
     <div class="insight red" style="margin-top:13px;"><span class="ic">⚠️</span><p><b>① 할인</b>으로 산 고객은 CAC 회수 전 무너지고(오늘회 중단·정육각 무흑자), <b>② '산지직송(신선)'</b>은 3040의 언어다. 코어 50대 여성이 검색하는 건 <b class="hlr">'건강(갱년기·혈당)'</b> — 메시지도, 고객도 어긋나 있다.</p></div>
@@ -306,16 +305,30 @@
     <div class="slide-head"><span class="kicker">The Product · 무엇을 메인으로 파는가</span>
       <h2>[팔도감 건강처방전] — 산지 원물을 '건강 식단'으로</h2></div>
     <div class="row" style="align-items:stretch; gap:14px;">
-      <div class="statcard"><div class="n">36.8<span class="u">%</span></div><div class="l"><b>남성 50대 대사증후군</b> (40대 30.6%)</div></div>
-      <div class="statcard"><div class="n">2<span class="u">배</span></div><div class="l"><b>여성 대사증후군</b> 40대→50대 급증</div></div>
-      <div class="statcard"><div class="n">3<span class="u">조원</span></div><div class="l"><b>케어푸드 시장</b> ('25)·초고령 진입</div></div>
+      <div class="col card" style="flex:0.8; display:flex; flex-direction:column;">
+        <h3 style="font-size:15px;">나이 ↑ = '건강·식단' 검색 ↑</h3>
+        <div class="chcap">정점은 <b>50대 여성</b> = 팔도감 코어</div>
+        <div class="bars" style="margin-top:auto; height:122px;">
+          <div class="bar"><div class="b" style="height:16%"></div><span class="x">20대</span></div>
+          <div class="bar"><div class="b" style="height:33%"></div><span class="x">30대</span></div>
+          <div class="bar"><div class="b" style="height:62%"></div><span class="x">40대</span></div>
+          <div class="bar on"><span class="v">↑</span><div class="b" style="height:100%"></div><span class="x">50대+</span></div>
+        </div>
+      </div>
+      <div class="col" style="flex:1.2; display:flex; flex-direction:column; gap:11px;">
+        <div class="row" style="gap:11px;">
+          <div class="statcard" style="padding:14px 15px;"><div class="n" style="font-size:33px;">36.8<span class="u">%</span></div><div class="l">50대 대사증후군</div></div>
+          <div class="statcard" style="padding:14px 15px;"><div class="n" style="font-size:33px;">61<span class="u">만</span></div><div class="l">자궁근종('22)<br>40·50대 2/3</div></div>
+          <div class="statcard" style="padding:14px 15px;"><div class="n" style="font-size:33px;">3<span class="u">조</span></div><div class="l">케어푸드 시장</div></div>
+        </div>
+        <div class="insight" style="flex:1;"><span class="ic">🎯</span><p>나이 들수록 건강식 니즈가 폭증 — 그 정점이 <b class="hl">50대 여성</b>. '음식' 검색이 곧 '건강식단' 검색이다. <b>50대 여성 ∩ 건강식단</b> 교집합을 산지 원물로 점유한다.</p></div>
+      </div>
     </div>
-    <div class="row" style="margin-top:14px; gap:14px; align-items:stretch;">
+    <div class="row" style="margin-top:13px; gap:14px; align-items:stretch;">
       <div class="col card green"><span class="num" style="color:var(--green-d)">🩸 혈당</span><h3>저당·저GI 라인</h3><p style="margin-top:6px;">스테비아 토마토·산지 사과 · 백미 대체 고대미(카무트·귀리)</p></div>
       <div class="col card green"><span class="num" style="color:var(--green-d)">🌸 갱년기</span><h3>에스트로겐·칼슘 라인</h3><p style="margin-top:6px;">석류·칡·콩류 · 자연산 미역·톳·고칼슘 수산물</p></div>
       <div class="col card green"><span class="num" style="color:var(--green-d)">❤️ 혈관</span><h3>불포화·저염 라인</h3><p style="margin-top:6px;">저온압착 들기름 · 칼륨 채소(시금치·아보카도)</p></div>
     </div>
-    <div class="insight" style="margin-top:14px;"><span class="ic">🥗</span><p>'신선한 식재료'를 넘어 <b class="hl">'건강 목적별 식단'</b>을 메인 카테고리로. 이미 검색 수요(갱년기·혈당)가 있는 시장을 <b>완제품 아닌 산지 원물</b>로 점유한다.</p></div>
     <div class="srcnote"><b>출처</b> · 대사증후군(국민건강영양조사): SBS / 케어푸드 3조: 삼정KPMG / 질환별 식이가이드 기반 큐레이션</div>
     <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>The Product</span></div>
   </section>
@@ -353,20 +366,16 @@
       </div>
       <div class="col" style="flex:0.13; text-align:center; font-size:34px; color:var(--green); font-weight:800;">→</div>
       <div class="col" style="flex:1;">
-        <div class="post">
-          <div class="head"><span class="av">팔</span><span class="who">갱년기 엄마의 든든한 밥상<span>@팔도감러버 · 산지 숏폼 12초 ▶</span></span></div>
-          <div class="ph">
-            <img src="images/food.jpeg" alt="제철 건강 집밥">
-            <span class="tagdot" style="top:16px; left:22px;"><span class="pin">+</span>성주 참외</span>
-            <span class="tagdot" style="top:74px; right:18px;"><span class="pin">+</span>해남 들기름</span>
-            <span class="hlabel">🩺 혈당 부담 ↓ · 저GI 품종</span>
-          </div>
-          <div class="body">
-            <div class="cap2">"혈당 걱정되던 우리 엄마가 매일 아침 안심하고 드세요"</div>
-            <div class="cta"><span class="buy">🛒 이 식단 그대로 담기</span><span class="play">▶ 숏폼</span></div>
-          </div>
+        <div class="reel">
+          <img src="images/food.jpeg" alt="팔도감 산지 숏폼">
+          <div class="shade"></div>
+          <span class="live">● 산지 LIVE</span>
+          <span class="hl2">🩺 저GI · 혈당 부담↓</span>
+          <div class="acts"><div><div class="ai">❤️</div>2.6천</div><div><div class="ai">💬</div>184</div><div><div class="ai">🔖</div>담기</div><div><div class="ai">↗</div>공유</div></div>
+          <div class="cap3"><b>@팔도감</b> 해남 농부가 갓 짠 들기름으로 차린 <b>갱년기 엄마 밥상</b> 🌸 #저당 #제철</div>
+          <div class="pbar"><div class="pt"><b>성주 참외 1.5kg</b><span>9,900원</span></div><span class="pbtn">담기</span></div>
         </div>
-        <div style="text-align:center; font-size:12px; color:var(--green-d); margin-top:6px; font-weight:800;">TO-BE · 콘텐츠+재료태그(오늘의집) × 숏폼(그립) × 구매 전 건강 라벨</div>
+        <div style="text-align:center; font-size:12px; color:var(--green-d); margin-top:7px; font-weight:800;">TO-BE · 산지 숏폼(그립형) 영상에 제품을 바로 붙인다 + 건강 라벨</div>
       </div>
     </div>
     <div class="row" style="margin-top:12px; gap:10px;">
@@ -379,7 +388,41 @@
     <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>AS-IS → TO-BE</span></div>
   </section>
 
-  <!-- 8. THE ENGINE · 왜 구매전환율이 오르나 -->
+  <!-- 8. CONTENT COMMERCE (오늘의집 적용: 요리+재료) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker">Content Commerce · 오늘의집처럼</span>
+      <h2>요리를 보여주고, 그 요리에 쓴 '재료'를 바로 담게</h2></div>
+    <div class="row" style="flex:1; gap:16px; align-items:center;">
+      <div class="col refcard" style="flex:0.85;">
+        <div class="imgwrap" style="height:250px;"><img src="images/ohou.jpeg" alt="오늘의집 콘텐츠 피드"></div>
+        <div class="tt">오늘의집 — <span>사진 속 제품이 뜬다</span></div>
+        <div class="cap">집들이 사진 속 가구·소품에 <b>제품 태그</b> → 그 자리에서 구매. 보는 재미가 곧 쇼핑.</div>
+      </div>
+      <div class="col" style="flex:0.12; text-align:center; font-size:30px; color:var(--green); font-weight:800;">→</div>
+      <div class="col" style="flex:1;">
+        <div class="post">
+          <div class="head"><span class="av">팔</span><span class="who">오늘 우리 엄마 갱년기 밥상 🌸<span>@팔도감러버 · 조회 1.2만 · 저장 320</span></span></div>
+          <div class="ph" style="height:134px;"><img src="images/food.jpeg" alt="팔도감 집밥 콘텐츠"></div>
+          <div class="body">
+            <div class="cap2" style="margin-bottom:2px;">📋 이 요리에 쓴 재료 — 탭하면 바로 담겨요</div>
+            <div class="ingrow">
+              <div class="dishthumb"><div class="di">🍖</div><div class="dl"><b>한돈 갈비</b>9,900원</div></div>
+              <div class="dishthumb"><div class="di">🍅</div><div class="dl"><b>성주 참외</b>저GI</div></div>
+              <div class="dishthumb"><div class="di">🥬</div><div class="dl"><b>쌈 채소</b>칼륨</div></div>
+              <div class="dishthumb"><div class="di">🫙</div><div class="dl"><b>해남 들기름</b>불포화</div></div>
+            </div>
+            <div class="cta"><span class="buy">🛒 재료 4개 한 번에 담기</span><span class="play">♡ 320</span></div>
+          </div>
+        </div>
+        <div style="text-align:center; font-size:12px; color:var(--green-d); margin-top:6px; font-weight:800;">TO-BE · 팔도감 집밥 콘텐츠 → 사진 속 '재료'가 곧 장바구니</div>
+      </div>
+    </div>
+    <div class="insight" style="margin-top:9px;"><span class="ic">🍳</span><p>유저·생산자가 올린 <b>'건강 집밥' 콘텐츠</b>가 곧 상품 진열대 — 보는 재미(레시피·후기)가 <b class="hl">그 자리에서 재료 구매</b>로 이어진다. 외로운 50대의 '나눌 곳'이자 광고 없는 <b>오가닉 전환 엔진</b>.</p></div>
+    <div class="srcnote"><b>참고</b> · 오늘의집(ohou.se) '사진 속 제품 태그' 모델 — 2026.6 캡처 / 우: 직접 그린 팔도감 적용안</div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 팔도감 Performance</span><span>Content Commerce</span></div>
+  </section>
+
+  <!-- 9. THE ENGINE · 왜 구매전환율이 오르나 -->
   <section class="slide">
     <div class="slide-head"><span class="kicker">The Engine · 왜 이게 '구매전환율'을 올리나</span>
       <h2>할인 없이 — 콘텐츠·커뮤니티·숏커머스가 전환을 만든다</h2></div>
