@@ -102,6 +102,19 @@
     border:1px solid var(--green-border); border-radius:999px; padding:6px 13px; margin-bottom:13px;}
 
   .tag{display:inline-block; padding:10px 17px; border:1.5px solid #36403a; border-radius:999px; font-size:14px; color:#cfd4d0; font-weight:600;}
+
+  .ways{display:flex; flex-direction:column; gap:11px;}
+  .way{background:var(--soft); border:1px solid var(--line); border-radius:14px; padding:12px 16px;}
+  .way.warm{background:var(--green-soft); border-color:var(--green-border);}
+  .way .top{display:flex; align-items:center; gap:9px; margin-bottom:4px; flex-wrap:wrap;}
+  .way .l{font-size:11px; font-weight:800; color:#fff; background:var(--green); border-radius:6px; padding:3px 8px; letter-spacing:.01em; white-space:nowrap;}
+  .way .t2{font-size:16.5px; font-weight:800; color:var(--ink);}
+  .way .d2{font-size:13px; color:var(--ink2); line-height:1.45;}
+  .gchart{background:#fff; border:1px solid var(--line); border-radius:14px; padding:13px 18px; display:flex; flex-direction:column; flex:1; min-height:0;}
+  .gchart .gt{font-size:13.5px; font-weight:800; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:8px;}
+  .gchart .gt::before{content:''; width:5px; height:15px; background:var(--green); border-radius:2px;}
+  .gcap{background:var(--green-soft); border:1px solid var(--green-border); border-radius:12px; padding:11px 15px; font-size:13.5px; color:var(--ink2); line-height:1.45;}
+  .gcap b{color:var(--green-d);}
   .srcnote{position:absolute; left:70px; bottom:48px; font-size:11.5px; color:var(--gray2); font-weight:500; line-height:1.4; max-width:1000px;}
   .srcnote b{color:var(--gray); font-weight:700;}
 
@@ -131,21 +144,63 @@
     </div>
   </section>
 
-  <!-- 2. MAPPING -->
+  <!-- 2. TOGETHER · 40x -->
   <section class="slide">
     <div class="slide-head">
-      <span class="kicker">라포랩스가 일하는 방식 ↔ 제가 일해온 방식</span>
-      <h2>라포랩스가 찾는 동료의 모습을, <span class="em">저는 이미 그렇게</span> 일해왔습니다</h2>
+      <span class="kicker">함께 만든 40배 성장</span>
+      <h2>40배 성장, 절대 <span class="em">혼자</span> 잘해서 이뤄낸 게 아닙니다</h2>
+      <p class="sub" style="margin-top:8px; font-size:17px;"><b style="color:var(--green-d);">'똑똑한 다정함'</b>을 발휘하며, 동료들과 함께 성장해 나갔습니다.</p>
     </div>
-    <div class="row" style="flex:1; align-items:stretch;">
-      <div class="col card"><div class="vlab">밀도 있게 임팩트</div><h3>스스로 배운다</h3><p>시키지 않아도 문제를 찾아 세션·트레바리에서 배우고 업무에 적용.</p></div>
-      <div class="col card"><div class="vlab">함께 일하기 좋은</div><h3>기준을 지킨다</h3><p>동료의 집중을 방해하지 않도록 팀의 Do·Do Not을 함께 지킴.</p></div>
-      <div class="col card"><div class="vlab">동료 피드백 · 1:1</div><h3>피드백으로 큰다</h3><p>1:1·커피챗에서 받은 피드백을 칠판에 적어 매일 스스로 고침.</p></div>
-      <div class="col card green"><div class="vlab">일 잘 하는데 따뜻한</div><h3>사람을 챙긴다</h3><p>동료의 동기·감정에 신경 쓰고, 성장과 생일을 진심으로 챙김.</p></div>
+    <div class="split" style="min-height:0;">
+      <div style="flex:none; width:484px; display:flex; flex-direction:column; justify-content:center;">
+        <div class="ways">
+          <div class="way"><div class="top"><span class="l">밀도 있게 임팩트</span><span class="t2">스스로 배운다</span></div><div class="d2">문제를 찾아 세션·트레바리에서 배우고 업무에 적용.</div></div>
+          <div class="way"><div class="top"><span class="l">함께 일하기 좋은</span><span class="t2">기준을 지킨다</span></div><div class="d2">동료의 집중을 방해하지 않도록 Do·Do Not을 함께 지킴.</div></div>
+          <div class="way"><div class="top"><span class="l">동료 피드백·1:1</span><span class="t2">피드백으로 큰다</span></div><div class="d2">1:1·커피챗 피드백을 칠판에 적어 매일 스스로 고침.</div></div>
+          <div class="way warm"><div class="top"><span class="l">일 잘 하는데 따뜻한</span><span class="t2">사람을 챙긴다</span></div><div class="d2">동료의 동기·감정에 신경 쓰고, 성장·생일을 진심으로 챙김.</div></div>
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:11px; min-width:0;">
+        <div class="gchart">
+          <div class="gt">커버링 월 매출 성장 추이 · 약 40배</div>
+          <svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid meet" style="display:block; flex:1; min-height:0; width:100%;">
+            <defs>
+              <linearGradient id="cfGrow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a8f33" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#0a8f33" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line x1="55" y1="30" x2="590" y2="30" stroke="#F1F4F0" stroke-width="1"/>
+            <line x1="55" y1="110" x2="590" y2="110" stroke="#F1F4F0" stroke-width="1"/>
+            <line x1="55" y1="200" x2="590" y2="200" stroke="#F1F4F0" stroke-width="1"/>
+            <line x1="55" y1="290" x2="590" y2="290" stroke="#F1F4F0" stroke-width="1"/>
+            <line x1="55" y1="360" x2="590" y2="360" stroke="#E2E6E2" stroke-width="1.5"/>
+            <text x="50" y="34" font-size="11" fill="#8B958A" text-anchor="end" font-family="JetBrains Mono, monospace">최고점</text>
+            <text x="50" y="114" font-size="11" fill="#8B958A" text-anchor="end" font-family="JetBrains Mono, monospace">10억</text>
+            <text x="50" y="204" font-size="11" fill="#8B958A" text-anchor="end" font-family="JetBrains Mono, monospace">5억</text>
+            <text x="50" y="294" font-size="11" fill="#8B958A" text-anchor="end" font-family="JetBrains Mono, monospace">1억</text>
+            <polygon points="60,350 140,344 220,336 300,316 380,270 460,190 520,100 590,30 590,360 60,360" fill="url(#cfGrow)"/>
+            <polyline points="60,350 140,344 220,336 300,316 380,270 460,190 520,100 590,30" fill="none" stroke="#0a8f33" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="60" cy="350" r="5" fill="#0a8f33" stroke="#fff" stroke-width="2"/>
+            <circle cx="300" cy="316" r="5" fill="#0a8f33" stroke="#fff" stroke-width="2"/>
+            <circle cx="460" cy="190" r="5" fill="#0a8f33" stroke="#fff" stroke-width="2"/>
+            <circle cx="590" cy="30" r="8" fill="#46d873" stroke="#0a8f33" stroke-width="3"/>
+            <text x="60" y="378" font-size="11" fill="#8B958A" text-anchor="middle" font-family="JetBrains Mono, monospace">2024.05</text>
+            <text x="220" y="378" font-size="11" fill="#8B958A" text-anchor="middle" font-family="JetBrains Mono, monospace">2024.09</text>
+            <text x="380" y="378" font-size="11" fill="#8B958A" text-anchor="middle" font-family="JetBrains Mono, monospace">2025.04</text>
+            <text x="520" y="378" font-size="11" fill="#8B958A" text-anchor="middle" font-family="JetBrains Mono, monospace">2025.12</text>
+            <text x="590" y="378" font-size="11" fill="#0a8f33" text-anchor="middle" font-weight="700" font-family="JetBrains Mono, monospace">2026.04</text>
+            <text x="58" y="344" font-size="11" fill="#5B675B" font-family="JetBrains Mono, monospace">시작점</text>
+            <rect x="494" y="12" width="98" height="32" rx="4" fill="#0F1311"/>
+            <rect x="494" y="12" width="98" height="3" fill="#46d873"/>
+            <text x="543" y="33" font-size="14" fill="#fff" text-anchor="middle" font-weight="800" font-family="JetBrains Mono, monospace">최고점 ★</text>
+            <text x="325" y="450" font-size="13" fill="#0a8f33" text-anchor="middle" font-weight="800" font-family="JetBrains Mono, monospace">★ 입사 24개월 만에 40배 성장 달성 · 26.04 기준</text>
+          </svg>
+        </div>
+        <div class="gcap">💚 <b>똑똑한(일 잘) + 다정함(따뜻)</b> = 라포랩스가 찾는 '일 잘 하는데 따뜻한 사람'. <b>1인 마케터 → 5인 팀</b>과 함께 만든 성장입니다.</div>
+      </div>
     </div>
-    <div class="insight" style="margin-top:16px;"><span class="ic">🤝</span><p>현재는 팀장으로 일하지만, 팔도감엔 <b>한 명의 퍼포먼스 마케터</b>로 합류합니다 — <b class="hl">직책이 아니라, 이 태도로 일하는 동료</b>가 되겠습니다.</p></div>
-    <div class="srcnote"><b>라포랩스 컬처</b> · "일 잘 하는데 따뜻한 사람", 동료의 감정·동기를 챙기는 팀 플레이어, 동료 피드백·1:1 미팅 문화 (레몬베이스 CEO 인터뷰·라포랩스 채용 페이지)</div>
-    <div class="foot"><span class="logo"><span class="dot">●</span> 이도형 · Culture Fit</span><span>Mapping</span></div>
+    <div class="foot"><span class="logo"><span class="dot">●</span> 이도형 · Culture Fit</span><span>Together</span></div>
   </section>
 
   <!-- 3. LEARN -->
